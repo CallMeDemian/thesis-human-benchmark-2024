@@ -62,3 +62,12 @@ Action mapping and the nature of the human evidence are separate fields.
 - `NO_ACTION_STATEMENT`: no prospective managerial action is present.
 
 The thesis must not collapse these types into a single claim that an expert "recommended" the action.
+
+
+## Boundary cases: asset sales, equity issuance, and business disposals
+
+- Asset sales, subsidiary disposals, equity issuance, and capital injections are **not** native V4.3 actions.
+- Do not map an asset/subsidiary sale to `DL` merely because consolidated debt or leverage falls mechanically after disposal.
+- Map to `DL` only when the source explicitly states that cash proceeds will be used for principal repayment / debt reduction, or otherwise identifies debt repayment itself as the managerial action.
+- Equity issuance or capital injection remains `NO_MAPPABLE_ACTION` unless an independently stated canonical action is also present.
+- Selling a leveraged subsidiary can improve consolidated leverage without representing the frozen `deleveraging_total_debt_pct` intervention; preserve that distinction.
