@@ -1,1 +1,1 @@
-firm_key,stock_code,firm_name,report_date,source_org,source_type,report_title,url,evidence_summary,raw_action_tags,mapped_action,mapping_confidence,mapping_rationale,coder,review_status
+firm_key,stock_code,firm_name,report_date,source_org,source_type,report_title,url,statement_type,evidence_summary,raw_action_tags,mapped_action,mapping_confidence,mapping_rationale,strict_eligible,selection_status,coder,review_status,notes
