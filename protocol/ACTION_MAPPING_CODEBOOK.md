@@ -48,3 +48,17 @@ Use these before forcing a canonical action:
 - “원가절감 및 판관비 효율화” → OE / HIGH
 - “차입금 감축과 비용 구조조정을 병행” → MX1 / HIGH
 - “차입금 상환과 재고/채권 회수 개선을 병행” → MX2 / HIGH
+
+
+## Statement type
+
+Action mapping and the nature of the human evidence are separate fields.
+
+- `EXPLICIT_RECOMMENDATION`: the analyst/rater explicitly says the firm should, needs to, or is required to take the action.
+- `STATED_MANAGEMENT_POLICY`: the source states that management is pursuing, continuing, or planning the action.
+- `PROSPECTIVE_ACTION_PATH`: the source identifies the action as the mechanism expected to improve or preserve financial/credit quality.
+- `STATE_THRESHOLD_ONLY`: only an outcome threshold or KMI is stated, without a managerial route. This is not a canonical action by itself.
+- `FORECAST_ONLY`: the financial outcome is forecast without an identified managerial action.
+- `NO_ACTION_STATEMENT`: no prospective managerial action is present.
+
+The thesis must not collapse these types into a single claim that an expert "recommended" the action.
