@@ -93,3 +93,19 @@ Do not commit full copyrighted report PDFs unless redistribution rights are clea
 Researchers performing the archival mapping should not consult the firm's C4, C6-E, C3-E, Oracle payoff, or candidate ceiling when deciding the report mapping.
 
 Any later comparison with model policies is downstream of the frozen archival mapping.
+
+
+## 10. Discovery-only and non-action evidence
+
+The following may be used to locate an underlying report, but are not themselves primary human-expert evidence:
+
+- AI- or robot-generated report summaries;
+- automated news rewrites of brokerage reports;
+- search-engine snippets without a verifiable underlying document;
+- secondary articles that quote an analyst without preserving enough context to establish the action.
+
+When an underlying human-authored report can be identified, record the underlying organization, author/date, and canonical report URL instead.
+
+Credit-rating **thresholds or Key Monitoring Indicators are not automatically actions**. A statement such as "net debt / EBITDA below 2x could support an upgrade" defines an evaluated state. Map it to DL only when the report also identifies deleveraging / repayment / debt reduction as the managerial route. The same distinction applies to profitability and liquidity thresholds.
+
+A forecast is likewise not an action. "Debt will decline" or "margin will improve" is not coded unless a stated managerial action explains the change.
