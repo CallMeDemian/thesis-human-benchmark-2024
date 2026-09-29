@@ -1,0 +1,30 @@
+{
+  "status": "MATCHED_HUMAN_FORM_PACKAGE",
+  "seed": 20260930,
+  "strict_firms": 9,
+  "information_condition": "IC-b",
+  "action_mode": "candidate9",
+  "budget": "B1",
+  "icb_field_count": 27,
+  "case_aliases": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+  ],
+  "payload_source": "frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet",
+  "prompt_contract": "frozen/evidence/llm/prompt_contract.json",
+  "human_source": "outputs/strict_archival_benchmark.csv",
+  "respondent_visible_firm_identity": false,
+  "researcher_only_key": "RESEARCHER_ONLY_case_key.csv",
+  "notes": [
+    "Images use human-friendly formatting of the same IC-b information fields.",
+    "Do not distribute the researcher-only case key to respondents.",
+    "Verify institutional human-subject/IRB requirements before fielding."
+  ]
+}
