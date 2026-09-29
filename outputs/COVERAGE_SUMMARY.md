@@ -1,53 +1,50 @@
-# Coverage and Strict Benchmark Status
+# Coverage summary
 
-Updated: 2026-09-29
+Generated from the audited `data/benchmark_master_575.csv` and reconciled to `data/firm_level_benchmark.csv`.
 
-## Current collection state
+## Coverage
 
-- Frozen FY2024 target firms: **575 / 575**
-- First-pass public-web discovery: **575 / 575 complete**
-- Rows with a reviewed mapping record: **292 / 575**
-- Strict one-action archival benchmark after mapping audits: **9 firms**
-- Strict source mix: **1 CRA, 8 EQUITY**
-- Strict action mix: **2 CX, 7 OE**
+- Frozen FY2024 firms: **575**
+- Firms with first-pass search inventory: **575**
+- Firms with a reviewed mapping record in the audited master: **302**
+- Strict one-action archival benchmark: **9**
+- Follow-up priority queue: **38**
 
-The strict subset is intentionally conservative. Coverage pressure is not allowed to convert forecasts, state thresholds, growth strategies, asset sales, acquisitions, capacity expansion, already-realized actions, or multi-action restructuring into a frozen canonical action without adequate semantic fit.
+## Benchmark status
 
-## Strict firms
+| Status | Firms |
+|---|---:|
+| NO_REPORT_FOUND_AFTER_PASS1 | 346 |
+| REPORT_NONCANONICAL_ACTION | 112 |
+| REPORT_NO_ACTION | 71 |
+| REVIEWED_NO_CANONICAL_MAPPING | 19 |
+| STRICT_CANONICAL_ACTION | 9 |
+| MAPPED_NOT_STRICT | 7 |
+| PENDING_REVIEW | 4 |
+| MULTI_NONCANONICAL | 3 |
+| PENDING_SEARCH_REVIEW | 2 |
+| NO_REPORT_FOUND_AFTER_PASS2 | 1 |
+| EXCLUDED_AI_ONLY | 1 |
 
-| Row | Firm | Source | Date | Statement type | Action |
-|---:|---|---|---|---|---|
-| 50 | 대한해운 | 한국신용평가 (CRA) | 2024-12-26 | STATED_MANAGEMENT_POLICY | CX |
-| 72 | 무림P&P | 교보증권 (EQUITY) | 2024-12-10 | STATED_MANAGEMENT_POLICY | OE |
-| 82 | HMM | KB증권 (EQUITY) | 2024-10-18 | EXPLICIT_RECOMMENDATION | CX |
-| 89 | 더존비즈온 | 미래에셋증권 (EQUITY) | 2024-11-27 | PROSPECTIVE_ACTION_PATH | OE |
-| 183 | 카페24 | 미래에셋증권 (EQUITY) | 2024-03-11 | STATED_MANAGEMENT_POLICY | OE |
-| 267 | 랩지노믹스 | 대신증권 (EQUITY) | 2024-10-29 | PROSPECTIVE_ACTION_PATH | OE |
-| 368 | 율촌 | 유안타증권 (EQUITY) | 2024-12-20 | PROSPECTIVE_ACTION_PATH | OE |
-| 448 | 스튜디오드래곤 | 미래에셋증권 (EQUITY) | 2024-11-18 | PROSPECTIVE_ACTION_PATH | OE |
-| 515 | 뉴로메카 | 유진투자증권 (EQUITY) | 2024-06-24 | STATED_MANAGEMENT_POLICY | OE |
+## Strict canonical action distribution
 
-## Audit history
+| Action | Firms |
+|---|---:|
+| OE | 7 |
+| CX | 2 |
 
-The repository preserves three explicit mapping audits:
+## Strict-source distribution
 
-1. `evidence/strict_mapping_audit_v1.csv`
-2. `evidence/provisional_action_audit_v1.csv`
-3. `evidence/strict_candidate_audit_v2.csv`
+| Source type | Firms |
+|---|---:|
+| EQUITY | 8 |
+| CRA | 1 |
 
-These audits demote translated downstream effects, realized-only actions, and mappings that omit material noncanonical or opposite-direction co-actions.
+## Second-pass progress
 
-## Important boundary
+- `evidence/second_pass_batch_001.csv`: **20 firms** re-reviewed.
+- **14** follow-up items reached a stable second-pass disposition and were closed from the priority queue.
+- **6** remain because primary/full text could still change the action-bearing-source determination: 동국홀딩스, 한국석유공업, 고려아연, 디에스케이, 진코스텍, 레인보우로보틱스.
+- The strict subset is unchanged at **9 firms**.
 
-This archive is not a 575-firm human experiment with matched information. It is a **2024 contemporaneous archival human/expert benchmark**. Reports may use FY2023, interim-2024, market, management, or qualitative information available on their publication dates.
-
-The strict subset must therefore be compared with C4/C6-E as an external archival anchor, not as a randomized or information-matched estimate of human superiority.
-
-## Next gate
-
-Before any Oracle/Simulator or LLM outcome linkage:
-
-- recover primary text for remaining high-value provisional candidates;
-- complete second-pass CRA/issuer searches for high-priority `NO_REPORT_FOUND_AFTER_PASS1` firms;
-- freeze a versioned firm-level benchmark snapshot;
-- only then merge in C4 / C6-E / C3-E action and payoff data.
+The archive is a contemporaneous 2024 human/expert benchmark, not a matched-information human-vs-LLM experiment. Search snippets and automated summaries remain discovery evidence only.
