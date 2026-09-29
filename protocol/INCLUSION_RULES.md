@@ -59,6 +59,7 @@ These states are distinct:
 - `REPORT_NO_ACTION`: eligible report found but no explicit action statement.
 - `NO_MAPPABLE_ACTION`: action-like statement exists but cannot be mapped to the frozen action contract.
 - `A0`: use only when the source explicitly supports maintaining the current financial policy / no additional intervention.
+- `PRIMARY_UNAVAILABLE_AFTER_PASS2`: a specific eligible human report/IR document is identified, but primary/full sufficient text cannot be recovered after a documented second-pass search. Preserve discovery metadata, leave the final canonical mapping blank unless other primary evidence independently establishes it, and set `strict_eligible=FALSE`. This is a terminal evidence-sufficiency state, not `REPORT_NO_ACTION` or `NO_REPORT_FOUND`.
 
 Silence is never coded as A0.
 
