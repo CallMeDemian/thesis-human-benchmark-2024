@@ -7,10 +7,10 @@ This repository is intentionally separate from the frozen thesis reproduction ki
 ## Current status
 
 - First-pass public-web discovery: **575 / 575 complete**
-- Reviewed mapping records: **302 / 575**
+- Reviewed mapping records: **303 / 575**
 - Current strict one-action archival subset: **9 firms**
-- Follow-up queue: **38 firms**
-- Second-pass batch 001: **20 firms reviewed; 14 queue items closed**
+- Follow-up queue: **23 firms**
+- Second-pass batches completed: **40 firms**, with **29** priority items closed across the two batches
 
 Use `data/firm_level_benchmark.csv` as the audited one-row-per-firm source of truth and `outputs/strict_archival_benchmark.csv` as the strict subset. Historical batches remain immutable provenance. The firm-level hierarchy is frozen as **action-bearing-source priority**.
 
