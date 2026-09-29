@@ -54,6 +54,7 @@ Q3. 기업의 재무상태 및 신용도를 평가하는 업무에 대한 본인
 이미지 1: cards/00_metric_guide_1.png
 이미지 2: cards/00_metric_guide_2.png
 이미지 3: cards/01_action_catalog.png
+이미지 4: cards/02_action_semantics.png
 
 설명:
 - 기업명은 제공되지 않습니다.

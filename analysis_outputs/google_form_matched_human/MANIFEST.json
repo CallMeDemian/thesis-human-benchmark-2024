@@ -23,7 +23,8 @@
   "respondent_visible_firm_identity": false,
   "researcher_only_key": "RESEARCHER_ONLY_case_key.csv",
   "notes": [
-    "Images use human-friendly formatting of the same IC-b information fields.",
+    "Images use the same 27 IC-b fields with human-readable units; percentages/ratios are displayed to six decimals and full-precision values are retained in case_states_ICb_full_precision.csv.",
+    "The candidate-action catalog is bound to the frozen prompt contract; ACTION_CATALOG_EXACT.json preserves the exact eight-dimensional vectors.",
     "Do not distribute the researcher-only case key to respondents.",
     "Verify institutional human-subject/IRB requirements before fielding."
   ]

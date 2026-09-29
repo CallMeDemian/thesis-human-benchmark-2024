@@ -56,6 +56,7 @@ function createMatchedHumanSurvey() {
   addRepoImage(form, '00_metric_guide_1.png', '재무지표 읽는 법 1/2');
   addRepoImage(form, '00_metric_guide_2.png', '재무지표 읽는 법 2/2');
   addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');
+  addRepoImage(form, '02_action_semantics.png', '관리행동 해석 규칙');
   form.addSectionHeaderItem().setTitle('유의사항').setHelpText(
     '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. ' +
     '기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오. ' +
