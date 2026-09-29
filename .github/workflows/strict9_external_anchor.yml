@@ -1,0 +1,71 @@
+name: Strict-9 external anchor
+
+on:
+  push:
+    branches:
+      - analysis/strict9-human-anchor
+    paths-ignore:
+      - 'analysis_outputs/**'
+
+permissions:
+  contents: write
+
+jobs:
+  strict9:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout human benchmark
+        uses: actions/checkout@v4
+        with:
+          path: human
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Checkout V4.3 reproduction kit pointers
+        uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          path: repro
+          fetch-depth: 1
+          lfs: false
+
+      - name: Fetch only required LFS evaluation files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C repro lfs install --local
+          git -C repro lfs pull --include="frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv" --exclude=""
+          for f in             repro/frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv             repro/frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv
+          do
+            test -s "$f"
+            if head -n 1 "$f" | grep -q '^version https://git-lfs.github.com/spec/v1'; then
+              echo "LFS object was not materialized: $f" >&2
+              exit 1
+            fi
+          done
+
+      - name: Run strict-9 analysis
+        shell: bash
+        run: |
+          set -euo pipefail
+          python human/analysis/strict9_external_anchor.py             --human human             --repro repro             --out human/analysis_outputs/strict9
+
+      - name: Commit deterministic outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C human config user.name "github-actions[bot]"
+          git -C human config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C human add analysis_outputs/strict9
+          if git -C human diff --cached --quiet; then
+            echo "No output changes"
+          else
+            git -C human commit -m "Add strict-9 external anchor results"
+            git -C human push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Upload strict-9 analysis artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict9-external-anchor
+          path: human/analysis_outputs/strict9
