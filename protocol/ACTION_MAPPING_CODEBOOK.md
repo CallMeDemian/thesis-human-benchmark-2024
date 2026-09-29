@@ -71,3 +71,17 @@ The thesis must not collapse these types into a single claim that an expert "rec
 - Map to `DL` only when the source explicitly states that cash proceeds will be used for principal repayment / debt reduction, or otherwise identifies debt repayment itself as the managerial action.
 - Equity issuance or capital injection remains `NO_MAPPABLE_ACTION` unless an independently stated canonical action is also present.
 - Selling a leveraged subsidiary can improve consolidated leverage without representing the frozen `deleveraging_total_debt_pct` intervention; preserve that distinction.
+
+
+## Realized actions
+
+A recurring archival case is a report that describes an action that has already been executed before the publication date.
+
+Use `REALIZED_ACTION` in `statement_type` when the report mainly attributes observed performance or balance-sheet change to a completed or already-implemented managerial action.
+
+A realized action is retained as evidence about what human analysts considered financially relevant, but it is **not** treated as a prospective 2024 recommendation in the strict benchmark unless the source separately states that the action will continue, be repeated, or be expanded prospectively.
+
+Examples:
+- completed business-unit sale that already improved efficiency → `REALIZED_ACTION`; do not infer OE or DL unless a prospective continuation is separately stated;
+- debt already repaid before the report date → `REALIZED_ACTION`; not a new DL recommendation;
+- cost program already implemented with no forward commitment → `REALIZED_ACTION`; descriptive, not prospective OE.
