@@ -10,15 +10,23 @@ The archive may contain multiple 2024 documents per firm. Document-level evidenc
 
 For each firm:
 
-1. **CRA first.** Use the latest eligible, firm-specific 2024 credit-rating agency opinion/report that contains an explicit prospective managerial action, stated management financial policy, or an action-linked credit condition that can be mapped under the frozen action codebook.
-2. **EQUITY second.** If no mappable CRA action exists, use the latest eligible 2024 human-authored sell-side report for which full text or sufficient primary-source text is available and contains an explicit mappable corporate financial action.
-3. **IR third.** If neither CRA nor EQUITY yields a mappable action, use the latest eligible 2024 issuer IR / value-up / management-plan document containing an explicit mappable action. IR is labelled separately as a management-plan benchmark and is not described as independent expert judgment.
-4. If an eligible document exists but no canonical action can be justified, the firm has no strict canonical archival action. Preserve the reason as `REPORT_NO_ACTION`, `NO_MAPPABLE_ACTION`, or `MULTI_NONCANONICAL`.
-5. Never replace a non-mappable higher-priority source with a lower-priority source merely because the lower-priority source happens to map to a high-scoring action. Lower-priority mapped evidence may be retained for supplemental analysis, but the strict selection rule and all overrides must be logged.
+1. **CRA first.** Review the latest eligible, firm-specific 2024 credit-rating agency opinion/report.
+   - If that CRA document contains a **material prospective managerial action or stated management financial policy**, it governs the strict firm-level selection even when the action is `NO_MAPPABLE_ACTION` or `MULTI_NONCANONICAL`. Do not descend to a lower source merely to obtain a canonical action.
+   - If the CRA document contains only `FORECAST_ONLY`, `STATE_THRESHOLD_ONLY`, or `NO_ACTION_STATEMENT` evidence, CRA has not supplied an action to select; proceed to EQUITY.
+2. **EQUITY second.** Apply the same rule to the latest eligible 2024 human-authored sell-side report for which full text or sufficient primary-source text is available.
+   - A material prospective noncanonical or multi-action EQUITY policy blocks substitution by IR for the strict one-action benchmark.
+   - If the EQUITY evidence is only a forecast, state threshold, or no-action statement, proceed to IR.
+3. **IR third.** Use the latest eligible 2024 issuer IR / value-up / management-plan document containing a prospective managerial action. IR is labelled separately as a management-plan benchmark and is not described as independent expert judgment.
+4. If the selected highest-priority **action-bearing** document cannot be represented by one frozen canonical action, the firm has no strict canonical archival action. Preserve the reason as `NO_MAPPABLE_ACTION` or `MULTI_NONCANONICAL`. If no action-bearing document exists at any layer, preserve `REPORT_NO_ACTION`.
+5. Lower-priority mapped evidence may be retained for supplemental analysis, but it never overrides a higher-priority material action-bearing source. All source-layer descents and overrides must be logged.
 
 ## Date ordering
 
 "Latest" means the latest **publication date inside 2024**, not the newest web crawl date.
+
+## Source-hierarchy clarification
+
+The hierarchy is therefore **action-bearing-source priority**, not “canonical-action priority.” A higher-priority report that merely forecasts outcomes does not block lower-layer action evidence, while a higher-priority report that actually states a material managerial action does block cherry-picking a lower-layer canonical action. This distinction is frozen before any C4 / C6-E / C3-E / Oracle payoff linkage.
 
 ## Multiple actions in the selected document
 
