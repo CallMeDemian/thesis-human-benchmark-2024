@@ -1,0 +1,55 @@
+name: Extract V43 linkage inputs
+
+on:
+  push:
+    branches:
+      - analysis/downstream-linkage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout human benchmark
+        uses: actions/checkout@v4
+        with:
+          path: human
+
+      - name: Checkout frozen thesis reproduction kit
+        uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          ref: thesis-v43-reproduction-kit-v1.0.4
+          fetch-depth: 1
+          lfs: false
+          path: thesis
+
+      - name: Pull only required LFS evidence
+        working-directory: thesis
+        shell: bash
+        run: |
+          git lfs install
+          git lfs pull --include="frozen/original_release/rl/C3E_E2_7SEED_BALANCED_DFEBAFA6/C3E_firm_actions.parquet,frozen/original_release/rl/stage6/C3E_E2_7SEED_BALANCED_DFEBAFA6/C3E_firm_actions_payoffs.parquet,frozen/original_release/rl/stage6/C3E_E2_7SEED_BALANCED_DFEBAFA6/firm_action_oracle_payoffs.parquet,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage8/BASELINE_STRICT_ITT/llm_stage8_multi_oracle_scores_itt.parquet,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage8/HIGH_STRICT_ITT/llm_stage8_multi_oracle_scores_itt.parquet"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install parquet reader
+        shell: bash
+        run: python -m pip install --disable-pip-version-check pandas pyarrow
+
+      - name: Extract strict-nine linkage probe
+        shell: bash
+        run: python human/analysis/extract_v43_linkage_probe.py
+
+      - name: Upload probe
+        uses: actions/upload-artifact@v4
+        with:
+          name: v43-linkage-probe
+          path: human/analysis_artifacts/v43_linkage_probe/
+          if-no-files-found: error
