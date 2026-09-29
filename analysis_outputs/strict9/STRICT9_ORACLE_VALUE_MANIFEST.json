@@ -1,0 +1,23 @@
+{
+  "analysis_id": "HB2024_STRICT9_ORACLE_VALUE_V1",
+  "strict_n": 9,
+  "human_definition": "frozen human archival action mapped to candidate9 and scored counterfactually on the same V4.3 Simulator-Oracle substrate",
+  "comparison": [
+    "Human-mapped",
+    "C4",
+    "C6-E",
+    "C3-E"
+  ],
+  "primary_oracle": "alpha",
+  "robustness_oracles": [
+    "beta",
+    "gamma"
+  ],
+  "primary_metric": "no-op-adjusted delta_R_score",
+  "outputs": [
+    "strict9_oracle_case_level.csv",
+    "strict9_oracle_summary.csv",
+    "strict9_oracle_pairwise_vs_human.csv",
+    "STRICT9_ORACLE_VALUE_REPORT.md"
+  ]
+}
