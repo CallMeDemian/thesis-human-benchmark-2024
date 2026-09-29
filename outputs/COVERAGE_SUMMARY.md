@@ -6,12 +6,12 @@ Updated: 2026-09-29
 
 - Frozen FY2024 target firms: **575 / 575**
 - First-pass public-web discovery: **575 / 575 complete**
-- Rows with a reviewed mapping record: **275 / 575**
-- Strict one-action archival benchmark after two mapping audits: **9 firms**
-- Strict source mix: **8 EQUITY, 1 CRA**
-- Strict action mix: **7 OE, 2 CX**
+- Rows with a reviewed mapping record: **292 / 575**
+- Strict one-action archival benchmark after mapping audits: **9 firms**
+- Strict source mix: **1 CRA, 8 EQUITY**
+- Strict action mix: **2 CX, 7 OE**
 
-The 9-firm strict subset is intentionally small. Coverage pressure is not allowed to convert forecasts, state thresholds, growth strategies, asset sales, acquisitions, capacity expansion, already-realized actions, or multi-action restructuring into a frozen canonical action without adequate semantic fit.
+The strict subset is intentionally conservative. Coverage pressure is not allowed to convert forecasts, state thresholds, growth strategies, asset sales, acquisitions, capacity expansion, already-realized actions, or multi-action restructuring into a frozen canonical action without adequate semantic fit.
 
 ## Strict firms
 
@@ -29,16 +29,13 @@ The 9-firm strict subset is intentionally small. Coverage pressure is not allowe
 
 ## Audit history
 
-Two explicit audits are preserved:
+The repository preserves three explicit mapping audits:
 
 1. `evidence/strict_mapping_audit_v1.csv`
-   - re-reviewed every record that had previously been marked strict-eligible;
-   - demoted upstream asset-sale / translated-cost-effect / realized-only cases where the frozen action was not a faithful one-action representation.
-
 2. `evidence/provisional_action_audit_v1.csv`
-   - re-reviewed high-value provisional action candidates after recovering more primary human-authored reports;
-   - promoted **무림P&P → OE** and **더존비즈온 → OE** after primary report verification;
-   - kept/demoted expansion-driven, completed-integration, vertical-integration, and multi-action cases outside the strict subset.
+3. `evidence/strict_candidate_audit_v2.csv`
+
+These audits demote translated downstream effects, realized-only actions, and mappings that omit material noncanonical or opposite-direction co-actions.
 
 ## Important boundary
 
