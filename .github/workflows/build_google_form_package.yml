@@ -60,6 +60,12 @@ jobs:
             --repro repro \
             --out human/analysis_outputs/google_form_matched_human
 
+      - name: Upload Google Form package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: matched-human-google-form-package
+          path: human/analysis_outputs/google_form_matched_human
+
       - name: Commit deterministic outputs
         shell: bash
         run: |
