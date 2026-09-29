@@ -1,0 +1,75 @@
+name: Build matched-human Google Form package
+
+on:
+  push:
+    branches:
+      - analysis/strict9-human-anchor
+    paths:
+      - 'analysis/build_google_form_package.py'
+
+permissions:
+  contents: write
+
+jobs:
+  build-form-package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout human benchmark
+        uses: actions/checkout@v4
+        with:
+          path: human
+          fetch-depth: 1
+          persist-credentials: true
+
+      - name: Checkout V4.3 reproduction kit pointers
+        uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          path: repro
+          fetch-depth: 1
+          lfs: false
+
+      - name: Fetch frozen FY2024 LLM payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          PAYLOAD='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet'
+          git -C repro lfs install --local
+          git -C repro lfs pull --include="$PAYLOAD" --exclude=""
+          test -s "repro/$PAYLOAD"
+          if head -n 1 "repro/$PAYLOAD" | grep -q '^version https://git-lfs.github.com/spec/v1'; then
+            echo "LFS payload was not materialized" >&2
+            exit 1
+          fi
+
+      - name: Install renderer dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -y
+          sudo apt-get install -y fonts-noto-cjk
+          python -m pip install --upgrade pip
+          python -m pip install pandas pyarrow pillow
+
+      - name: Build Google Form package
+        shell: bash
+        run: |
+          set -euo pipefail
+          python human/analysis/build_google_form_package.py \
+            --human human \
+            --repro repro \
+            --out human/analysis_outputs/google_form_matched_human
+
+      - name: Commit deterministic outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git -C human config user.name "github-actions[bot]"
+          git -C human config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C human add analysis_outputs/google_form_matched_human
+          if git -C human diff --cached --quiet; then
+            echo "No output changes"
+          else
+            git -C human commit -m "Build matched-human Google Form package"
+            git -C human push origin "HEAD:$GITHUB_REF_NAME"
+          fi
