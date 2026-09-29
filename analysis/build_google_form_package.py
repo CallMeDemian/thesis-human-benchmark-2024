@@ -235,7 +235,8 @@ def draw_action_card(out: Path):
     img.save(out, "PNG", optimize=True)
 
 def draw_metric_guides(out1: Path, out2: Path):
-    label_by_key = {key: label for _, fields in FIELD_GROUPS for key, label, _ in fields}\n    items = [(k, label_by_key.get(k, k), v) for k, v in KOREAN_DEFS.items()]
+    label_by_key = {key: label for _, fields in FIELD_GROUPS for key, label, _ in fields}
+    items = [(k, label_by_key.get(k, k), v) for k, v in KOREAN_DEFS.items()]
     halves = [items[:14], items[14:]]
     for out, subset, idx in [(out1, halves[0], 1), (out2, halves[1], 2)]:
         W, H = 1600, 1500
@@ -246,9 +247,9 @@ def draw_metric_guides(out1: Path, out2: Path):
         f_desc = font(24, False)
         d.text((70, 48), f"재무지표 읽는 법 ({idx}/2)", font=f_title, fill=(20,20,20))
         y=130
-        for key, desc in subset:
+        for key, label, desc in subset:
             d.rounded_rectangle((70,y,1530,y+82), radius=8, fill=(248,249,250), outline=(225,225,225))
-            d.text((92,y+12), key, font=f_key, fill=(45,45,45))
+            d.text((92,y+12), label, font=f_key, fill=(45,45,45))
             lines=fit_lines(d, desc, f_desc, 930)[:2]
             for j,line in enumerate(lines):
                 d.text((590,y+10+j*29), line, font=f_desc, fill=(55,55,55))
