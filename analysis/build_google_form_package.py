@@ -64,12 +64,12 @@ FIELD_GROUPS = [
 ]
 
 ACTIONS = [
-    ("A0", "현 상태 유지", "별도 재무개선 행동 없이 현재 사업계획 유지"),
-    ("DL", "부채 상환", "기초 총이자부부채의 34.70% 상환 요청"),
-    ("RF", "차환", "기초 단기차입금의 47.41%를 장기성 차입으로 전환; 총원금 유지"),
-    ("CX", "성장 CAPEX 축소", "유지보수 투자는 보존하고 성장성 CAPEX의 63.10% 축소"),
+    ("A0", "현 상태 유지", "별도 개입 없이 동결된 사업계획을 유지. 영업 중단을 의미하지 않음"),
+    ("DL", "부채 상환", "기초 총이자부부채의 34.70% 상환 요청. 실제 상환은 가용 상환재원·유동성 범위 내에서 실행"),
+    ("RF", "차환", "기초 단기차입금의 47.41%를 장기성 차입으로 전환. 총원금은 늘리지 않음"),
+    ("CX", "성장 CAPEX 축소", "유지보수 투자는 보존하고 성장성 CAPEX의 63.10% 축소. 기존 자산 매각은 아님"),
     ("WC1", "운전자본 회수 개선", "재고회전율 +0.699회, 매출채권회전율 +0.467회"),
-    ("WC2", "공급자금융 활용", "재고 +0.466회, 매출채권 +0.311회, 매입채무회전율 -0.818회"),
+    ("WC2", "공급자금융 활용", "재고 +0.466회, 매출채권 +0.311회, 매입채무회전율 -0.818회(지급기간 연장 방향)"),
     ("OE", "비용 효율화", "매출원가율 -1.344%p, 판매관리비율 -0.858%p"),
     ("MX1", "부채상환 + 비용효율화", "부채 17.35% 상환 + 원가율 -0.672%p + 판관비율 -0.429%p"),
     ("MX2", "부채상환 + 운전자본 개선", "부채 17.35% 상환 + 재고·채권 회전 개선 + 지급기간 일부 연장"),
@@ -161,7 +161,7 @@ def fit_lines(draw, text, fnt, max_width):
     return lines or [""]
 
 def draw_card(row: pd.Series, alias: str, out: Path):
-    W, H = 1600, 1880
+    W, H = 1600, 2200
     img = Image.new("RGB", (W, H), "white")
     d = ImageDraw.Draw(img)
 
@@ -235,7 +235,7 @@ def draw_action_card(out: Path):
     img.save(out, "PNG", optimize=True)
 
 def draw_metric_guides(out1: Path, out2: Path):
-    items = [(k, v) for k, v in KOREAN_DEFS.items()]
+    label_by_key = {key: label for _, fields in FIELD_GROUPS for key, label, _ in fields}\n    items = [(k, label_by_key.get(k, k), v) for k, v in KOREAN_DEFS.items()]
     halves = [items[:14], items[14:]]
     for out, subset, idx in [(out1, halves[0], 1), (out2, halves[1], 2)]:
         W, H = 1600, 1500
@@ -290,7 +290,7 @@ Q3. 위 행동을 선택한 가장 중요한 이유를 1~3문장으로 작성해
 
 각 사례에서는 사전에 정의된 9개의 관리행동 가운데 가장 적절하다고 판단하는 행동 하나를 선택합니다. 정답이 정해진 시험이 아니며 현재 제공된 정보에 기초한 전문적 판단을 응답해 주시면 됩니다.
 
-이 설문은 동일한 정보·행동공간에서 전문가 판단 분포를 측정하기 위한 matched-condition human baseline입니다. 개인의 이름과 소속기관명은 수집하지 않습니다.
+개인의 이름과 소속기관명은 수집하지 않습니다.
 
 예상 소요시간: 약 15~25분
 
@@ -385,37 +385,43 @@ Q5. 설문 판단 과정에서 어렵거나 애매했던 점이 있다면 자유
 """
 
 def build_apps_script(alias_order):
-    ids = ",\n  ".join(f'"{a}": "PUT_DRIVE_FILE_ID_FOR_case_{a}_png"' for a in alias_order)
     action_js = json.dumps(ACTION_OPTIONS, ensure_ascii=False)
     aliases_js = json.dumps(alias_order, ensure_ascii=False)
-    return f'''// Google Apps Script — generated survey skeleton
-// 1) Upload all PNG files in the cards folder to Google Drive.
-// 2) Replace CARD_FILE_IDS values below with the corresponding Drive file IDs.
-// 3) Run createMatchedHumanSurvey() in script.google.com.
-// Apps Script Forms supports ImageItem.setImage(BlobSource).
+    return f'''// Google Apps Script — one-run survey builder
+// Paste this file into https://script.google.com and run createMatchedHumanSurvey().
+// The case-card images are fetched from the public research repository and embedded into the Form.
+// After creation, the script logs the edit URL, responder URL, and response-spreadsheet URL.
 
-const CARD_FILE_IDS = {{
-  "metric1": "PUT_DRIVE_FILE_ID_FOR_00_metric_guide_1_png",
-  "metric2": "PUT_DRIVE_FILE_ID_FOR_00_metric_guide_2_png",
-  "actions": "PUT_DRIVE_FILE_ID_FOR_01_action_catalog_png",
-  {ids}
-}};
+const CARD_BASE_URL =
+  'https://github.com/CallMeDemian/thesis-human-benchmark-2024/raw/refs/heads/analysis/strict9-human-anchor/' +
+  'analysis_outputs/google_form_matched_human/cards/';
 
 const ACTION_OPTIONS = {action_js};
 const CASE_ALIASES = {aliases_js};
 
-function addDriveImage(form, key, title) {{
-  const blob = DriveApp.getFileById(CARD_FILE_IDS[key]).getBlob();
-  form.addImageItem().setTitle(title).setImage(blob).setWidth(700);
+function addRepoImage(form, filename, title) {{
+  const response = UrlFetchApp.fetch(CARD_BASE_URL + filename);
+  if (response.getResponseCode() !== 200) {{
+    throw new Error('Failed to fetch image: ' + filename + ' / HTTP ' + response.getResponseCode());
+  }}
+  form.addImageItem()
+    .setTitle(title)
+    .setImage(response.getBlob())
+    .setWidth(700);
 }}
 
 function createMatchedHumanSurvey() {{
-  const form = FormApp.create('기업 신용상태 개선을 위한 재무행동 판단 연구');
+  const form = FormApp.create('기업 신용상태 개선을 위한 재무행동 판단 연구', true);
+  form.setCollectEmail(false);
+  form.setProgressBar(true);
   form.setDescription(
-    '2024년 재무정보·시장·산업정보만을 이용해 향후 약 1년의 재무건전성·신용상태 개선을 위한 관리행동을 판단하는 연구입니다. ' +
-    '기업명은 제공하지 않으며 외부 검색이나 데이터 조회는 하지 마십시오.'
+    '본 설문은 2024년 재무정보·시장·산업정보를 바탕으로 향후 약 1년의 재무건전성·신용상태 개선을 위한 관리행동을 판단하는 연구입니다. ' +
+    '기업명은 제공하지 않습니다. 제공된 정보만 이용하여 판단하고 인터넷 검색, 외부 데이터 조회, 생성형 AI 사용 또는 동료와의 상의는 하지 마십시오.'
   );
   form.setConfirmationMessage('응답해 주셔서 감사합니다.');
+
+  const responseSheet = SpreadsheetApp.create('기업 신용상태 개선 재무행동 설문 응답');
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, responseSheet.getId());
 
   const consent = form.addMultipleChoiceItem()
     .setTitle('위 연구설명을 확인하였으며 자발적으로 연구 참여에 동의합니다.')
@@ -436,16 +442,18 @@ function createMatchedHumanSurvey() {{
     .setBounds(1,5).setLabels('경험이 거의 없음','매우 익숙함').setRequired(true);
 
   form.addPageBreakItem().setTitle('판단 규칙');
-  addDriveImage(form, 'metric1', '재무지표 읽는 법 1/2');
-  addDriveImage(form, 'metric2', '재무지표 읽는 법 2/2');
-  addDriveImage(form, 'actions', '9개 표준 관리행동');
+  addRepoImage(form, '00_metric_guide_1.png', '재무지표 읽는 법 1/2');
+  addRepoImage(form, '00_metric_guide_2.png', '재무지표 읽는 법 2/2');
+  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');
   form.addSectionHeaderItem().setTitle('유의사항').setHelpText(
-    '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. 기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오.'
+    '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. ' +
+    '기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오. ' +
+    '목표는 주가상승이나 기업가치 극대화가 아니라 향후 약 1년의 재무건전성·신용상태 개선입니다.'
   );
 
   CASE_ALIASES.forEach(alias => {{
     form.addPageBreakItem().setTitle('Case ' + alias);
-    addDriveImage(form, alias, 'Case ' + alias + ' 재무정보');
+    addRepoImage(form, 'case_' + alias + '.png', 'Case ' + alias + ' 재무정보');
     form.addMultipleChoiceItem()
       .setTitle('이 기업의 향후 약 1년 동안의 재무건전성·신용상태 개선을 위해 가장 우선적으로 권고할 관리행동 하나를 선택해 주십시오.')
       .setChoiceValues(ACTION_OPTIONS)
@@ -468,8 +476,9 @@ function createMatchedHumanSurvey() {{
   form.addParagraphTextItem().setTitle('9개 표준 행동으로는 충분히 표현하기 어렵다고 느낀 사례가 있다면 Case와 원하는 행동을 적어 주십시오.');
   form.addParagraphTextItem().setTitle('설문 판단 과정에서 어렵거나 애매했던 점이 있다면 자유롭게 작성해 주십시오.');
 
-  Logger.log('Edit URL: ' + form.getEditUrl());
+  Logger.log('Form edit URL: ' + form.getEditUrl());
   Logger.log('Responder URL: ' + form.getPublishedUrl());
+  Logger.log('Response spreadsheet: ' + responseSheet.getUrl());
 }}
 '''
 
