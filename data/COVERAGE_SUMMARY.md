@@ -1,28 +1,27 @@
 # Coverage summary
 
-Generated from `data/benchmark_master_575.csv`.
+Generated from the audited `data/benchmark_master_575.csv` and reconciled to `data/firm_level_benchmark.csv`.
 
 ## Coverage
 
 - Frozen FY2024 firms: **575**
 - Firms with first-pass search inventory: **575**
-- Firms with a reviewed mapping record in the canonical master: **291**
-- Strict canonical archival actions currently available: **17**
-- Strict canonical actions excluding issuer IR/management evidence: **16**
+- Firms with a reviewed mapping record in the audited master: **292**
+- Strict one-action archival benchmark: **9**
 - Follow-up priority queue: **52**
 
 ## Benchmark status
 
 | Status | Firms |
 |---|---:|
-| NO_REPORT_FOUND_AFTER_PASS1 | 347 |
-| REPORT_NONCANONICAL_ACTION | 97 |
+| NO_REPORT_FOUND_AFTER_PASS1 | 346 |
+| REPORT_NONCANONICAL_ACTION | 102 |
 | REPORT_NO_ACTION | 71 |
-| REVIEWED_NO_CANONICAL_MAPPING | 24 |
-| STRICT_CANONICAL_ACTION | 17 |
+| REVIEWED_NO_CANONICAL_MAPPING | 23 |
 | PENDING_REVIEW | 11 |
-| MAPPED_NOT_STRICT | 3 |
-| MULTI_NONCANONICAL | 2 |
+| STRICT_CANONICAL_ACTION | 9 |
+| MAPPED_NOT_STRICT | 7 |
+| MULTI_NONCANONICAL | 3 |
 | PENDING_SEARCH_REVIEW | 2 |
 | EXCLUDED_AI_ONLY | 1 |
 
@@ -30,23 +29,21 @@ Generated from `data/benchmark_master_575.csv`.
 
 | Action | Firms |
 |---|---:|
-| OE | 13 |
+| OE | 7 |
 | CX | 2 |
-| WC1 | 1 |
-| DL | 1 |
 
 ## Strict-source distribution
 
 | Source type | Firms |
 |---|---:|
-| EQUITY | 12 |
-| CRA | 4 |
-| IR | 1 |
+| EQUITY | 8 |
+| CRA | 1 |
 
-## Interpretation
+## Source of truth
 
-The first-pass internet search covers all 575 firms, but the benchmark must not be described as 575 human recommendations. Many firms have no eligible 2024 public expert report, reports without a prospective financial action, or actions outside the frozen 8D/9-candidate space.
+- `data/firm_level_benchmark.csv`: audited one-row-per-firm mapping state.
+- `outputs/strict_archival_benchmark.csv`: current strict archival subset.
+- `evidence/strict_mapping_audit_v1.csv`, `evidence/strict_candidate_audit_v2.csv`, and `evidence/provisional_action_audit_v1.csv`: preserved audit trail.
+- `data/benchmark_master_575.csv` and the canonical shards are reconciled to the audited firm-level state in this revision.
 
-`data/canonical_mapping_overrides.csv` records reviewed evidence that was omitted from the row-batched mapping files or corrected under the frozen action-contract boundary. In particular, an asset sale is not treated as DL unless principal debt reduction itself is the identified managerial action/path.
-
-The archival benchmark is contemporaneous rather than information-matched: calendar-2024 reports can use FY2023 or interim-2024 information, whereas the thesis LLM policy is evaluated on the frozen FY2024 state.
+The archive is a contemporaneous 2024 human/expert benchmark, not a matched-information human-vs-LLM experiment. Search snippets and automated summaries remain discovery evidence only.
