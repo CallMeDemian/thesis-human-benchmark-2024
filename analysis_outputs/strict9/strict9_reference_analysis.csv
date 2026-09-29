@@ -1,0 +1,5 @@
+﻿regime,model,n,c3e_reference_matches_human,c6e_matches_human,c6e_adopts_reference,c6e_adoption_rate,reference_correct_and_c6e_correct,reference_wrong_but_c6e_correct
+BASELINE,google_gemini31flashlite,9,1,1,4,0.4444444444444444,1,0
+BASELINE,openai_gpt54mini,9,1,3,2,0.2222222222222222,1,2
+HIGH,google_gemini31flashlite,9,1,3,3,0.3333333333333333,1,2
+HIGH,openai_gpt54mini,9,1,2,3,0.3333333333333333,1,1

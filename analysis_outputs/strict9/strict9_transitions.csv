@@ -1,0 +1,19 @@
+﻿regime,model,comparison,n,correct_to_correct,correct_to_wrong,wrong_to_correct,wrong_to_wrong,net_exact_match_change,mcnemar_exact_p
+BASELINE,google_gemini31flashlite,C4R vs C4,9,2,1,0,6,-0.1111111111111111,1.0
+BASELINE,google_gemini31flashlite,C6-E vs C4,9,1,2,0,6,-0.2222222222222222,0.5
+BASELINE,google_gemini31flashlite,C6-E vs C4R,9,1,1,0,7,-0.1111111111111111,1.0
+BASELINE,openai_gpt54mini,C4R vs C4,9,3,0,0,6,0.0,1.0
+BASELINE,openai_gpt54mini,C6-E vs C4,9,3,0,0,6,0.0,1.0
+BASELINE,openai_gpt54mini,C6-E vs C4R,9,3,0,0,6,0.0,1.0
+HIGH,google_gemini31flashlite,C4R vs C4,9,3,0,0,6,0.0,1.0
+HIGH,google_gemini31flashlite,C6-E vs C4,9,3,0,0,6,0.0,1.0
+HIGH,google_gemini31flashlite,C6-E vs C4R,9,3,0,0,6,0.0,1.0
+HIGH,openai_gpt54mini,C4R vs C4,9,2,0,0,7,0.0,1.0
+HIGH,openai_gpt54mini,C6-E vs C4,9,2,0,0,7,0.0,1.0
+HIGH,openai_gpt54mini,C6-E vs C4R,9,2,0,0,7,0.0,1.0
+HIGH_vs_BASELINE,google_gemini31flashlite,C4,9,2,1,1,5,0.0,1.0
+HIGH_vs_BASELINE,google_gemini31flashlite,C4R,9,2,0,1,6,0.1111111111111111,1.0
+HIGH_vs_BASELINE,google_gemini31flashlite,C6-E,9,1,0,2,6,0.2222222222222222,0.5
+HIGH_vs_BASELINE,openai_gpt54mini,C4,9,2,1,0,6,-0.1111111111111111,1.0
+HIGH_vs_BASELINE,openai_gpt54mini,C4R,9,2,1,0,6,-0.1111111111111111,1.0
+HIGH_vs_BASELINE,openai_gpt54mini,C6-E,9,2,1,0,6,-0.1111111111111111,1.0
