@@ -1,39 +1,38 @@
-// Google Apps Script — generated survey skeleton
-// 1) Upload all PNG files in the cards folder to Google Drive.
-// 2) Replace CARD_FILE_IDS values below with the corresponding Drive file IDs.
-// 3) Run createMatchedHumanSurvey() in script.google.com.
-// Apps Script Forms supports ImageItem.setImage(BlobSource).
+// Google Apps Script — one-run survey builder
+// Paste this file into https://script.google.com and run createMatchedHumanSurvey().
+// The case-card images are fetched from the public research repository and embedded into the Form.
+// After creation, the script logs the edit URL, responder URL, and response-spreadsheet URL.
 
-const CARD_FILE_IDS = {
-  "metric1": "PUT_DRIVE_FILE_ID_FOR_00_metric_guide_1_png",
-  "metric2": "PUT_DRIVE_FILE_ID_FOR_00_metric_guide_2_png",
-  "actions": "PUT_DRIVE_FILE_ID_FOR_01_action_catalog_png",
-  "A": "PUT_DRIVE_FILE_ID_FOR_case_A_png",
-  "B": "PUT_DRIVE_FILE_ID_FOR_case_B_png",
-  "C": "PUT_DRIVE_FILE_ID_FOR_case_C_png",
-  "D": "PUT_DRIVE_FILE_ID_FOR_case_D_png",
-  "E": "PUT_DRIVE_FILE_ID_FOR_case_E_png",
-  "F": "PUT_DRIVE_FILE_ID_FOR_case_F_png",
-  "G": "PUT_DRIVE_FILE_ID_FOR_case_G_png",
-  "H": "PUT_DRIVE_FILE_ID_FOR_case_H_png",
-  "I": "PUT_DRIVE_FILE_ID_FOR_case_I_png"
-};
+const CARD_BASE_URL =
+  'https://github.com/CallMeDemian/thesis-human-benchmark-2024/raw/refs/heads/analysis/strict9-human-anchor/' +
+  'analysis_outputs/google_form_matched_human/cards/';
 
 const ACTION_OPTIONS = ["A0 — 현 상태 유지", "DL — 부채 상환", "RF — 차환", "CX — 성장 CAPEX 축소", "WC1 — 운전자본 회수 개선", "WC2 — 공급자금융 활용", "OE — 비용 효율화", "MX1 — 부채상환 + 비용효율화", "MX2 — 부채상환 + 운전자본 개선"];
 const CASE_ALIASES = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
 
-function addDriveImage(form, key, title) {
-  const blob = DriveApp.getFileById(CARD_FILE_IDS[key]).getBlob();
-  form.addImageItem().setTitle(title).setImage(blob).setWidth(700);
+function addRepoImage(form, filename, title) {
+  const response = UrlFetchApp.fetch(CARD_BASE_URL + filename);
+  if (response.getResponseCode() !== 200) {
+    throw new Error('Failed to fetch image: ' + filename + ' / HTTP ' + response.getResponseCode());
+  }
+  form.addImageItem()
+    .setTitle(title)
+    .setImage(response.getBlob())
+    .setWidth(700);
 }
 
 function createMatchedHumanSurvey() {
-  const form = FormApp.create('기업 신용상태 개선을 위한 재무행동 판단 연구');
+  const form = FormApp.create('기업 신용상태 개선을 위한 재무행동 판단 연구', true);
+  form.setCollectEmail(false);
+  form.setProgressBar(true);
   form.setDescription(
-    '2024년 재무정보·시장·산업정보만을 이용해 향후 약 1년의 재무건전성·신용상태 개선을 위한 관리행동을 판단하는 연구입니다. ' +
-    '기업명은 제공하지 않으며 외부 검색이나 데이터 조회는 하지 마십시오.'
+    '본 설문은 2024년 재무정보·시장·산업정보를 바탕으로 향후 약 1년의 재무건전성·신용상태 개선을 위한 관리행동을 판단하는 연구입니다. ' +
+    '기업명은 제공하지 않습니다. 제공된 정보만 이용하여 판단하고 인터넷 검색, 외부 데이터 조회, 생성형 AI 사용 또는 동료와의 상의는 하지 마십시오.'
   );
   form.setConfirmationMessage('응답해 주셔서 감사합니다.');
+
+  const responseSheet = SpreadsheetApp.create('기업 신용상태 개선 재무행동 설문 응답');
+  form.setDestination(FormApp.DestinationType.SPREADSHEET, responseSheet.getId());
 
   const consent = form.addMultipleChoiceItem()
     .setTitle('위 연구설명을 확인하였으며 자발적으로 연구 참여에 동의합니다.')
@@ -54,16 +53,18 @@ function createMatchedHumanSurvey() {
     .setBounds(1,5).setLabels('경험이 거의 없음','매우 익숙함').setRequired(true);
 
   form.addPageBreakItem().setTitle('판단 규칙');
-  addDriveImage(form, 'metric1', '재무지표 읽는 법 1/2');
-  addDriveImage(form, 'metric2', '재무지표 읽는 법 2/2');
-  addDriveImage(form, 'actions', '9개 표준 관리행동');
+  addRepoImage(form, '00_metric_guide_1.png', '재무지표 읽는 법 1/2');
+  addRepoImage(form, '00_metric_guide_2.png', '재무지표 읽는 법 2/2');
+  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');
   form.addSectionHeaderItem().setTitle('유의사항').setHelpText(
-    '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. 기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오.'
+    '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. ' +
+    '기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오. ' +
+    '목표는 주가상승이나 기업가치 극대화가 아니라 향후 약 1년의 재무건전성·신용상태 개선입니다.'
   );
 
   CASE_ALIASES.forEach(alias => {
     form.addPageBreakItem().setTitle('Case ' + alias);
-    addDriveImage(form, alias, 'Case ' + alias + ' 재무정보');
+    addRepoImage(form, 'case_' + alias + '.png', 'Case ' + alias + ' 재무정보');
     form.addMultipleChoiceItem()
       .setTitle('이 기업의 향후 약 1년 동안의 재무건전성·신용상태 개선을 위해 가장 우선적으로 권고할 관리행동 하나를 선택해 주십시오.')
       .setChoiceValues(ACTION_OPTIONS)
@@ -86,6 +87,7 @@ function createMatchedHumanSurvey() {
   form.addParagraphTextItem().setTitle('9개 표준 행동으로는 충분히 표현하기 어렵다고 느낀 사례가 있다면 Case와 원하는 행동을 적어 주십시오.');
   form.addParagraphTextItem().setTitle('설문 판단 과정에서 어렵거나 애매했던 점이 있다면 자유롭게 작성해 주십시오.');
 
-  Logger.log('Edit URL: ' + form.getEditUrl());
+  Logger.log('Form edit URL: ' + form.getEditUrl());
   Logger.log('Responder URL: ' + form.getPublishedUrl());
+  Logger.log('Response spreadsheet: ' + responseSheet.getUrl());
 }
