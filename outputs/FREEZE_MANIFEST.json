@@ -1,0 +1,44 @@
+{
+  "benchmark_id": "HB2024-v1.0",
+  "freeze_date": "2026-09-29",
+  "data_snapshot_commit": "bd6e6ab005ce9d7e810621aa3e29fc7799651824",
+  "final_audit_commit": "5bb407f4d1ab28453881cdc9d46790399e3abbf8",
+  "semantic_hierarchy_commit": "c4ffccb2d17c85a55c6ed1f91f583e4ca97330b7",
+  "population": {
+    "frozen_firms": 575,
+    "first_pass_discovery": 575,
+    "reviewed_document_or_mapping_records": 303,
+    "priority_followup_queue": 0,
+    "strict_one_action_archival_firms": 9
+  },
+  "strict_distribution": {
+    "action": {
+      "OE": 7,
+      "CX": 2
+    },
+    "source_type": {
+      "EQUITY": 8,
+      "CRA": 1
+    }
+  },
+  "frozen_file_blobs": {
+    "data/firm_level_benchmark.csv": "c2025451f21cbd3715b9acd66499cab38f72acbe",
+    "data/benchmark_master_575.csv": "a2168df9d1f15948ca01aedff4859a28651c00f9",
+    "outputs/firm_level_benchmark_final.csv": "c2025451f21cbd3715b9acd66499cab38f72acbe",
+    "outputs/strict_archival_benchmark.csv": "e38ce4013b8217004b19bd30d03b8ebe6dce6e8d",
+    "outputs/BENCHMARK_DISTRIBUTIONS.md": "fdb961924061dae4a95d75efc654a893470ec6d6",
+    "protocol/ACTION_MAPPING_CODEBOOK.md": "c327b699111624ec83546f4dcb8638db7d4adc08",
+    "protocol/FIRM_AGGREGATION_RULE.md": "e931054fe0fdb7c1a3742a54900d1885d74eac89",
+    "protocol/INCLUSION_RULES.md": "c65ff5dce2f658e68b77fa30436bdb0c3ce0219b",
+    "protocol/STRICT_MAPPING_AUDIT_RULES.md": "7b24c8cae68a8f8058f5c952a8dbbe7bb9e3d48f"
+  },
+  "downstream_join_key": "firm_key",
+  "downstream_scope": [
+    "C4",
+    "C6-E",
+    "C3-E",
+    "Simulator payoff",
+    "Oracle payoff",
+    "candidate ceiling"
+  ]
+}
