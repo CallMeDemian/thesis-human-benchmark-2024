@@ -50,6 +50,15 @@ jobs:
           set -euo pipefail
           python human/analysis/strict9_external_anchor.py             --human human             --repro repro             --out human/analysis_outputs/strict9
 
+      - name: Run strict-9 Oracle value comparison
+        shell: bash
+        run: |
+          set -euo pipefail
+          python human/analysis/strict9_oracle_value.py \
+            --human human \
+            --repro repro \
+            --out human/analysis_outputs/strict9
+
       - name: Commit deterministic outputs
         shell: bash
         run: |
