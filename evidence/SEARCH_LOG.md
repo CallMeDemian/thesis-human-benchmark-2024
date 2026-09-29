@@ -56,3 +56,19 @@ Key methodological observation: a large share of public 2024 analyst reports con
 
 ### Important interpretation boundary
 KIS credit opinions explicitly describe their publications as credit opinions rather than financial advice. Accordingly, the strict archive should be described as an **archival human/expert financial-action benchmark**, with the `statement_type` field preserved. It should not be described wholesale as a set of human recommendations.
+
+
+## 2026-09-29 — pass-1 discovery complete
+
+The first-pass public-web discovery queue has now reached **575 / 575 firms**.
+
+This is a discovery milestone, not source-exhaustion or final strict benchmark completion. A pass-1 `NO_ELIGIBLE_2024_REPORT_FOUND_AFTER_PASS1` status means that no qualifying source was identified under the first public-search pass; it is not proof that no such report exists.
+
+Next work is split into four gates:
+
+1. normalize rows 1–575 into one master search inventory;
+2. recover/verify primary full text for high-value action candidates and latest-source selection;
+3. audit all existing action mappings against the tightened codebook (especially asset-sale/deconsolidation and realized-vs-prospective cost improvements);
+4. freeze the final firm-level archival benchmark before linking C4/C6-E/C3-E or Oracle/Simulator outcomes.
+
+The pass-1 search intentionally retained many `NO_MAPPABLE_ACTION` / growth-only cases instead of forcing business expansion, M&A, shareholder return, capacity expansion, asset sales, or generic profitability forecasts into the nine frozen actions.
