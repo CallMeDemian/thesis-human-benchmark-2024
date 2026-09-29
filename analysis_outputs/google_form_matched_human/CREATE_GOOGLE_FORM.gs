@@ -81,6 +81,8 @@ function createMatchedHumanSurvey() {
     .setChoiceValues(['구체적인 차입금 만기구조 및 금리','향후 투자계획 및 CAPEX 계획','사업부문별 수익성','경영진의 사업계획','영업현금흐름 전망','산업 전망 및 경쟁상황','담보·보증 및 자금조달 가능성','신용평가사의 정성적 평가요소','기업명 및 과거 사업이력','기타']);
   form.addCheckboxItem().setTitle('실제 기업이 어떤 회사인지 알아보았거나 강하게 추정한 사례가 있습니까?')
     .setChoiceValues(['없음'].concat(CASE_ALIASES.map(x => 'Case ' + x)));
+  form.addMultipleChoiceItem().setTitle('응답 과정에서 인터넷 검색, 외부 데이터 조회 또는 생성형 AI 도구를 사용했습니까?')
+    .setChoiceValues(['아니오','예']).setRequired(true);
   form.addParagraphTextItem().setTitle('9개 표준 행동으로는 충분히 표현하기 어렵다고 느낀 사례가 있다면 Case와 원하는 행동을 적어 주십시오.');
   form.addParagraphTextItem().setTitle('설문 판단 과정에서 어렵거나 애매했던 점이 있다면 자유롭게 작성해 주십시오.');
 
