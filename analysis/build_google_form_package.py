@@ -475,7 +475,8 @@ function createMatchedHumanSurvey() {{
   form.addPageBreakItem().setTitle('판단 규칙');
   addRepoImage(form, '00_metric_guide_1.png', '재무지표 읽는 법 1/2');
   addRepoImage(form, '00_metric_guide_2.png', '재무지표 읽는 법 2/2');
-  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');\n  addRepoImage(form, '02_action_semantics.png', '관리행동 해석 규칙');
+  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');
+  addRepoImage(form, '02_action_semantics.png', '관리행동 해석 규칙');
   form.addSectionHeaderItem().setTitle('유의사항').setHelpText(
     '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. ' +
     '기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오. ' +
@@ -547,7 +548,7 @@ def main():
     if exact_catalog_by_id.get("MX2") != expected_mx2:
         raise RuntimeError(f"Frozen MX2 contract mismatch: {exact_catalog_by_id.get('MX2')}")
     (out / "ACTION_CATALOG_EXACT.json").write_text(
-        json.dumps(exact_catalog, ensure_ascii=False, indent=2) + "\\n",
+        json.dumps(exact_catalog, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
     icb_fields = [x["field"] for x in prompt["information_conditions"]["IC-b"]["visible_dictionary"]]
@@ -600,7 +601,8 @@ def main():
     states[public_cols].sort_values("case_alias").to_csv(out / "case_states_ICb_full_precision.csv", index=False, encoding="utf-8-sig")
 
     draw_metric_guides(cards / "00_metric_guide_1.png", cards / "00_metric_guide_2.png")
-    draw_action_card(cards / "01_action_catalog.png")\n    draw_action_semantics(cards / "02_action_semantics.png")
+    draw_action_card(cards / "01_action_catalog.png")
+    draw_action_semantics(cards / "02_action_semantics.png")
 
     by_key = states.set_index("firm_key")
     for _, r in key.iterrows():
