@@ -64,15 +64,15 @@ FIELD_GROUPS = [
 ]
 
 ACTIONS = [
-    ("A0", "현 상태 유지", "별도 개입 없이 동결된 사업계획을 유지. 영업 중단을 의미하지 않음"),
-    ("DL", "부채 상환", "기초 총이자부부채의 34.70% 상환 요청. 실제 상환은 가용 상환재원·유동성 범위 내에서 실행"),
-    ("RF", "차환", "기초 단기차입금의 47.41%를 장기성 차입으로 전환. 총원금은 늘리지 않음"),
-    ("CX", "성장 CAPEX 축소", "유지보수 투자는 보존하고 성장성 CAPEX의 63.10% 축소. 기존 자산 매각은 아님"),
-    ("WC1", "운전자본 회수 개선", "재고회전율 +0.699회, 매출채권회전율 +0.467회"),
-    ("WC2", "공급자금융 활용", "재고 +0.466회, 매출채권 +0.311회, 매입채무회전율 -0.818회(지급기간 연장 방향)"),
-    ("OE", "비용 효율화", "매출원가율 -1.344%p, 판매관리비율 -0.858%p"),
-    ("MX1", "부채상환 + 비용효율화", "부채 17.35% 상환 + 원가율 -0.672%p + 판관비율 -0.429%p"),
-    ("MX2", "부채상환 + 운전자본 개선", "부채 17.35% 상환 + 재고·채권 회전 개선 + 지급기간 일부 연장"),
+    ("A0", "현 상태 유지", "별도 개입 없이 동결된 사업계획 유지. 8개 행동축 모두 0"),
+    ("DL", "부채 상환", "기초 총이자부부채의 34.69549324277901% 상환 요청"),
+    ("RF", "차환", "기초 단기차입금의 47.41061962838509%를 장기성 차입으로 전환; 총원금 유지"),
+    ("CX", "성장 CAPEX 축소", "유지보수 투자는 보존하고 성장성 CAPEX의 63.10184441953189% 축소"),
+    ("WC1", "운전자본 회수 개선", "재고회전율 +0.699188061599954회, 매출채권회전율 +0.4670519522227794회"),
+    ("WC2", "공급자금융 활용", "재고 +0.46612537439996926회, 매출채권 +0.3113679681485196회, 매입채무회전율 -0.8178580660378577회"),
+    ("OE", "비용 효율화", "매출원가율 -1.3441303306167718%p, 판매관리비율 -0.8584733695356256%p"),
+    ("MX1", "부채상환 + 비용효율화", "부채 17.347746621389504% 상환 + 원가율 -0.6720651653083859%p + 판관비율 -0.4292366847678128%p"),
+    ("MX2", "부채상환 + 운전자본 개선", "부채 17.347746621389504% 상환 + 재고 +0.27967522463998157회 + 매출채권 +0.18682078088911175회 + 매입채무 -0.2453574198113573회"),
 ]
 
 ACTION_OPTIONS = [f"{a} — {b}" for a, b, _ in ACTIONS]
@@ -134,15 +134,15 @@ def fmt_value(v, kind: str) -> str:
     except Exception:
         return str(v)
     if kind == "pct":
-        return f"{x * 100:.2f}%"
+        return f"{x * 100:.6f}%"
     if kind == "pp":
-        return f"{x * 100:+.2f}%p"
+        return f"{x * 100:+.6f}%p"
     if kind == "ratio":
-        return f"{x:.3f}배"
+        return f"{x:.6f}배"
     if kind == "ratio_signed":
-        return f"{x:+.3f}배"
+        return f"{x:+.6f}배"
     if kind == "raw3":
-        return f"{x:.3f}"
+        return f"{x:.8f}"
     return f"{x:.6g}"
 
 def fit_lines(draw, text, fnt, max_width):
@@ -208,7 +208,7 @@ def draw_card(row: pd.Series, alias: str, out: Path):
     img.save(out, "PNG", optimize=True)
 
 def draw_action_card(out: Path):
-    W, H = 1600, 1540
+    W, H = 1600, 1860
     img = Image.new("RGB", (W, H), "white")
     d = ImageDraw.Draw(img)
     f_title = font(50, True)
@@ -222,16 +222,46 @@ def draw_action_card(out: Path):
 
     y = 190
     for code, name, desc in ACTIONS:
-        d.rounded_rectangle((70, y, 1530, y+125), radius=12, fill=(246,247,249), outline=(220,220,220))
+        d.rounded_rectangle((70, y, 1530, y+152), radius=12, fill=(246,247,249), outline=(220,220,220))
         d.text((95, y+24), code, font=f_code, fill=(25,25,25))
         d.text((215, y+20), name, font=f_head, fill=(25,25,25))
-        lines = fit_lines(d, desc, f_text, 1220)[:2]
+        lines = fit_lines(d, desc, f_text, 1220)[:3]
         for j, line in enumerate(lines):
             d.text((215, y+62+j*30), line, font=f_text, fill=(65,65,65))
-        y += 137
+        y += 164
 
     d.text((70, H-105), "모든 비-A0 후보는 연구에서 사전에 동결한 표준 강도(B1 nominal intensity 1)입니다.", font=f_note, fill=(70,70,70))
     d.text((70, H-70), "A0는 무개입 기준입니다. '더 큰 행동이 항상 더 좋다'고 가정하지 마십시오.", font=f_note, fill=(70,70,70))
+    img.save(out, "PNG", optimize=True)
+
+def draw_action_semantics(out: Path):
+    W, H = 1600, 1500
+    img = Image.new("RGB", (W, H), "white")
+    d = ImageDraw.Draw(img)
+    f_title = font(48, True)
+    f_head = font(28, True)
+    f_text = font(25, False)
+    d.text((70, 48), "관리행동 해석 규칙", font=f_title, fill=(20,20,20))
+    rules = [
+        ("총이자부부채", "단기차입금 + 유동성장기부채 + 비유동장기차입금 + 사채. 총부채와 다름."),
+        ("DL", "실제 상환액은 가용 상환재원과 유동성 보유수준의 제한을 받음. 같은 금액을 다시 차입해 상환한 것으로 처리하지 않음."),
+        ("RF", "단기차입을 장기성 조달로 전환하여 만기구조만 변경. 총원금은 증가하지 않으며 기존 부채 전체를 재가격하지 않음."),
+        ("CX", "성장성 CAPEX만 축소하며 유지보수 CAPEX는 보존. 기존 자산 매각을 의미하지 않음."),
+        ("재고회전율", "매출원가 ÷ 재고. 양(+)의 변화는 재고가 더 빠르게 회전함을 의미."),
+        ("매출채권회전율", "매출 ÷ 매출채권. 양(+)의 변화는 회수가 더 빨라짐을 의미."),
+        ("매입채무회전율", "매출원가 ÷ 매입채무. 음(-)의 변화는 공급자 지급이 더 느려져 지급기간이 늘어나는 방향."),
+        ("원가율·판관비율", "매출 대비 비율의 가산 변화. 음(-)의 값은 비용비율 하락을 의미."),
+        ("후보선택", "A0, DL, RF, CX, WC1, WC2, OE, MX1, MX2 중 정확히 하나를 선택. 후보 벡터를 수정하거나 새로 결합하지 않음."),
+        ("행동강도", "A0는 강도 0. 나머지 8개 후보는 동결된 정규화 강도 1의 표준 프로그램. 더 큰 행동이 항상 더 좋다고 가정하지 않음."),
+    ]
+    y = 130
+    for head, body in rules:
+        d.rounded_rectangle((70, y, 1530, y+112), radius=8, fill=(248,249,250), outline=(225,225,225))
+        d.text((92, y+14), head, font=f_head, fill=(35,35,35))
+        lines = fit_lines(d, body, f_text, 1120)[:3]
+        for j, line in enumerate(lines):
+            d.text((360, y+13+j*31), line, font=f_text, fill=(55,55,55))
+        y += 124
     img.save(out, "PNG", optimize=True)
 
 def draw_metric_guides(out1: Path, out2: Path):
@@ -334,7 +364,7 @@ Q3. 기업의 재무상태 및 신용도를 평가하는 업무에 대한 본인
 ## 섹션 3 — 판단 규칙
 이미지 1: cards/00_metric_guide_1.png
 이미지 2: cards/00_metric_guide_2.png
-이미지 3: cards/01_action_catalog.png
+이미지 3: cards/01_action_catalog.png\n이미지 4: cards/02_action_semantics.png
 
 설명:
 - 기업명은 제공되지 않습니다.
@@ -445,7 +475,7 @@ function createMatchedHumanSurvey() {{
   form.addPageBreakItem().setTitle('판단 규칙');
   addRepoImage(form, '00_metric_guide_1.png', '재무지표 읽는 법 1/2');
   addRepoImage(form, '00_metric_guide_2.png', '재무지표 읽는 법 2/2');
-  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');
+  addRepoImage(form, '01_action_catalog.png', '9개 표준 관리행동');\n  addRepoImage(form, '02_action_semantics.png', '관리행동 해석 규칙');
   form.addSectionHeaderItem().setTitle('유의사항').setHelpText(
     '각 사례에서 9개 후보 중 하나만 선택하십시오. 정보 없음은 0이 아닙니다. ' +
     '기업을 추정하더라도 외부 검색이나 기억에 의존한 구체적 사건·수치를 추가하지 마십시오. ' +
@@ -502,6 +532,24 @@ def main():
         raise RuntimeError(f"Expected 9 strict firms, found {len(strict)}")
 
     prompt = json.loads((repro / PROMPT_REL).read_text(encoding="utf-8"))
+    exact_catalog = prompt["action_contract"]["catalog"]
+    exact_catalog_by_id = {x["candidate_id"]: x["action"] for x in exact_catalog}
+    expected_mx2 = {
+        "growth_capex_reduction_pct": 0.0,
+        "deleveraging_total_debt_pct": 0.17347746621389504,
+        "refinancing_short_debt_pct": 0.0,
+        "inv_turnover_chg": 0.27967522463998157,
+        "ar_turnover_chg": 0.18682078088911175,
+        "ap_turnover_chg": -0.2453574198113573,
+        "cogs_ratio_chg": 0.0,
+        "sga_ratio_chg": 0.0,
+    }
+    if exact_catalog_by_id.get("MX2") != expected_mx2:
+        raise RuntimeError(f"Frozen MX2 contract mismatch: {exact_catalog_by_id.get('MX2')}")
+    (out / "ACTION_CATALOG_EXACT.json").write_text(
+        json.dumps(exact_catalog, ensure_ascii=False, indent=2) + "\\n",
+        encoding="utf-8",
+    )
     icb_fields = [x["field"] for x in prompt["information_conditions"]["IC-b"]["visible_dictionary"]]
     if len(icb_fields) != 27:
         raise RuntimeError(f"Expected 27 IC-b fields, found {len(icb_fields)}")
@@ -552,7 +600,7 @@ def main():
     states[public_cols].sort_values("case_alias").to_csv(out / "case_states_ICb_full_precision.csv", index=False, encoding="utf-8-sig")
 
     draw_metric_guides(cards / "00_metric_guide_1.png", cards / "00_metric_guide_2.png")
-    draw_action_card(cards / "01_action_catalog.png")
+    draw_action_card(cards / "01_action_catalog.png")\n    draw_action_semantics(cards / "02_action_semantics.png")
 
     by_key = states.set_index("firm_key")
     for _, r in key.iterrows():
@@ -576,7 +624,7 @@ def main():
         "respondent_visible_firm_identity": False,
         "researcher_only_key": "RESEARCHER_ONLY_case_key.csv",
         "notes": [
-            "Images use human-friendly formatting of the same IC-b information fields.",
+            "Images use the same 27 IC-b fields with human-readable units; percentages/ratios are displayed to six decimals and full-precision values are retained in case_states_ICb_full_precision.csv.",\n            "The candidate-action catalog is bound to the frozen prompt contract; ACTION_CATALOG_EXACT.json preserves the exact eight-dimensional vectors.",
             "Do not distribute the researcher-only case key to respondents.",
             "Verify institutional human-subject/IRB requirements before fielding."
         ]
