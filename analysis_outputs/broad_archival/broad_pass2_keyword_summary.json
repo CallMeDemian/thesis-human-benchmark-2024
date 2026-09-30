@@ -1,6 +1,13 @@
 {
-  "candidate_firms": 110,
+  "candidate_firms": 120,
   "top20": [
+    {
+      "firm_key": "088800::2024",
+      "firm_name": "에이스테크",
+      "keyword_score": 6,
+      "action_keyword_hits": "{\"OE\": [\"구조조정\", \"비용\", \"수익성\"], \"DL\": [\"상환\"], \"RF\": [\"만기\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
     {
       "firm_key": "005030::2024",
       "firm_name": "부산주공",
@@ -9,10 +16,10 @@
       "reviewed_in_bounded_pass3": false
     },
     {
-      "firm_key": "088800::2024",
-      "firm_name": "에이스테크",
+      "firm_key": "332290::2024",
+      "firm_name": "누보",
       "keyword_score": 5,
-      "action_keyword_hits": "{\"OE\": [\"구조조정\", \"비용\", \"수익성\"], \"DL\": [\"상환\"], \"RF\": [\"만기\"]}",
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\", \"만기\"], \"WC\": [\"채권\"]}",
       "reviewed_in_bounded_pass3": false
     },
     {
@@ -46,6 +53,13 @@
     {
       "firm_key": "142210::2024",
       "firm_name": "유니트론텍",
+      "keyword_score": 4,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "254490::2024",
+      "firm_name": "미래반도체",
       "keyword_score": 4,
       "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"], \"WC\": [\"채권\"]}",
       "reviewed_in_bounded_pass3": false
@@ -125,20 +139,6 @@
       "firm_name": "동양이엔피",
       "keyword_score": 3,
       "action_keyword_hits": "{\"OE\": [\"비용\", \"수익성\"], \"DL\": [\"순현금\"]}",
-      "reviewed_in_bounded_pass3": false
-    },
-    {
-      "firm_key": "198440::2024",
-      "firm_name": "강동씨앤엘",
-      "keyword_score": 3,
-      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
-      "reviewed_in_bounded_pass3": false
-    },
-    {
-      "firm_key": "237750::2024",
-      "firm_name": "피앤씨테크",
-      "keyword_score": 3,
-      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
       "reviewed_in_bounded_pass3": false
     }
   ]
