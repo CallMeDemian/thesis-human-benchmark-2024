@@ -1,7 +1,7 @@
 {
   "title": "기업 재무행동 판단 연구",
-  "buildId": "H15-v1-20261001",
-  "assetBase": "https://raw.githubusercontent.com/CallMeDemian/thesis-human-benchmark-2024/bec30f0fb50f0bcdc0c90e682333a8a77eef7cdf/analysis_outputs/human15/respondent/cards/",
+  "buildId": "H15-v2-20261001",
+  "assetBase": "https://raw.githubusercontent.com/CallMeDemian/thesis-human-benchmark-2024/refs/heads/analysis/human15-archival-expansion/analysis_outputs/human15/respondent/cards/",
   "intro": "본 설문은 기업의 재무정보를 바탕으로 향후 약 1년의 재무건전성 개선을 위해 어떤 관리행동을 우선적으로 권고하는지 알아보기 위한 연구입니다. 응답 결과는 학위논문의 통계분석에 활용하며, 같은 정보를 바탕으로 생성된 모델의 판단과 비교합니다.\n\n기업명이 가려진 15개 사례가 제시됩니다. 각 사례에서 9개 행동 중 하나를 고르고, 선택에 대한 확신 정도와 간단한 이유를 적어 주세요. 판단은 화면에 제시된 자료를 기준으로 해 주세요. 외부 검색이나 생성형 AI의 도움보다 본인의 판단을 기준으로 응답해 주세요.\n\n설문은 익명으로 진행됩니다. 자유응답에는 개인정보나 직장 내부정보 대신 판단 근거만 적어 주세요. 참여는 자발적이며 중간에 그만두셔도 됩니다. 결과는 개인이 드러나지 않는 집계 형태로 제시합니다.",
   "rules": "각 사례에서는 제공된 2024년 재무정보를 보고 향후 약 1년의 재무건전성 개선에 가장 적절하다고 판단하는 관리행동 하나를 선택해 주세요. 목표는 실제 기업의 이후 행동이나 실적을 맞히는 것이 아니라, 제시된 정보만으로 당시의 판단을 내리는 것입니다.\n\n9개 후보는 모두 연구에서 미리 정한 표준 프로그램입니다. 수치는 읽기 쉽게 반올림해 표시했습니다. 후보 하나를 고르되 강도나 조합은 제시된 형태 그대로 보아 주세요. A0는 별도 개입 없이 현재 사업계획을 이어가는 선택입니다.\n\n총이자부부채는 단기차입금·유동성장기부채·비유동장기차입금·사채의 합계입니다. 부채상환은 회사의 가용 현금과 유동성 범위에서 실행되는 것으로 봅니다. 차환은 총원금을 유지한 채 단기차입 일부를 장기성 차입으로 바꾸는 행동입니다. CAPEX 축소는 유지보수 투자를 남겨두고 성장 목적의 신규투자를 줄이는 행동입니다.\n\n재고회전율은 매출원가/재고, 매출채권회전율은 매출/매출채권, 매입채무회전율은 매출원가/매입채무입니다. 재고·채권 회전율 증가는 더 빠른 회수, 매입채무회전율 감소는 지급기간 연장 방향을 뜻합니다. 비용비율의 변화는 %p 단위입니다.\n\n비-A0 후보는 연구상 같은 표준 강도로 비교하지만, 실제 비용이나 효과가 같다는 뜻은 아닙니다. 회사 상황에 따라 실행 가능한 크기는 달라질 수 있습니다.\n\n기업명은 가려져 있으며 산업코드와 시장 구분은 원래 입력값을 그대로 표시합니다. '정보 없음'은 결측값으로 이해해 주세요. 화면에 제시된 정보만으로 판단해 주세요.",
   "actions": [
@@ -168,7 +168,7 @@
           "lines": [
             "재고 / 매출: 0.1%",
             "매출채권 / 매출: 12.5%",
-            "매입채무 / 매출: 0 < 값 < 0.1%"
+            "매입채무 / 매출: 0.0%"
           ]
         },
         {
@@ -754,7 +754,7 @@
         {
           "title": "투자·자산",
           "lines": [
-            "CAPEX / 매출: 0 < 값 < 0.1%",
+            "CAPEX / 매출: 0.0%",
             "유형자산 / 총자산: 0.5%"
           ]
         },
@@ -1057,63 +1057,63 @@
   "images": [
     {
       "file": "case_A.png",
-      "sha256": "4a1e585f1b12a836f688c52d08cf39f80595d67e31bde0698087d629d069c644"
+      "sha256": "be2ff192788fb600898a122e242a2688f06db06263b542c45a9ed3a3404969c0"
     },
     {
       "file": "case_B.png",
-      "sha256": "58f398fa02344a0519a5ad14f07028bc088f53ff3571802827c6dcbfc6862471"
+      "sha256": "ec9776d11813492594e8850b3b460fd9f82975dd186424090e3252a15868c4c3"
     },
     {
       "file": "case_C.png",
-      "sha256": "5963482b6b0e0c57a1546296eb68dc1d4d3a02b505501713d2e205feb4c87ba1"
+      "sha256": "48428f07f8f5232c3618c6b712d81f41dde7273708b3d5a2985398538cfb76a1"
     },
     {
       "file": "case_D.png",
-      "sha256": "7d7669d72268b1ae397938fbdc50a2d2ed53544dcc73558320b6b5abe0550e16"
+      "sha256": "f00f5b39d306f11c2a26f491cfb334548072fa0b4c8a0498f7891d98b10df1bc"
     },
     {
       "file": "case_E.png",
-      "sha256": "8422834dd02b883df8d706760456e6f35a7d258a02a3ae204073362650b566d3"
+      "sha256": "9e5af662549065a827b668f957aef89211733cc78b2f76d1ed3e562443be4d31"
     },
     {
       "file": "case_F.png",
-      "sha256": "251f2dc89fb806f894ccd8ef2552689ee40586ca5ae1e1adc0518f9ac423348b"
+      "sha256": "1a5bfcf9be42dbc116c96563ed9263328c677fb958b98640e0ef38948a760b5e"
     },
     {
       "file": "case_G.png",
-      "sha256": "33f869110f8b9214e5935afcbcfe85d0fe55d71af64343bb3468f49f445b58ff"
+      "sha256": "54e787e7d050a621c574fc943da5348b4a5ee22959e22a1c9aea21f3ce165d9b"
     },
     {
       "file": "case_H.png",
-      "sha256": "636904605150a6f1ac4013f26a8c4f0922d58061dd6e260ca36c1649bd516fa8"
+      "sha256": "569ecd9c9dce5ab0f9018541612c57e68da8a192dcebbf91a17fbb2e916ce0af"
     },
     {
       "file": "case_I.png",
-      "sha256": "3f45e5658f23b7a621bc2af7d2fb0ee8c49c994e1b98853b58a737e1e93c2c65"
+      "sha256": "0391b6f733acfb691509206d859120318c019a5117e17b82dc0dad9637c4a1a2"
     },
     {
       "file": "case_J.png",
-      "sha256": "1dd6e5f411e41616e5e25a0dc8cb7e670f8021a6bba29041d13c884ba32c8bec"
+      "sha256": "de1b6203d351309d8c3086d6b863f0e10b9a12bcfb1d3ad7a659a19cd4f41aed"
     },
     {
       "file": "case_K.png",
-      "sha256": "8e9e12798419d308b69d32db06d58db85cb741036d4839313b3bd0e0bb4b8f63"
+      "sha256": "75bb2d2c635160be5893001310ddce75ee1a2144196690f109c9d563b69b4c16"
     },
     {
       "file": "case_L.png",
-      "sha256": "8f57dbe47888034616ca45f84c44937488ad68ddc8944d456b3b0ca0040d0043"
+      "sha256": "b7521b17a1ea4463f2d81bafe9d61599e617039d97a8e9461de413728aadb3a9"
     },
     {
       "file": "case_M.png",
-      "sha256": "803c573d53cecd036f6d5e234c8499fa779cc7951b276a7842f721a101c29ac2"
+      "sha256": "cd702635dad842f7c90d8c12ecece8b7134624fe7af9901058bc3364b0124d7d"
     },
     {
       "file": "case_N.png",
-      "sha256": "57bb092f91455a41ba1a2973ffa845643be1e64478d0ae471824a02299ae0d1c"
+      "sha256": "60fc51c64117e2ac8b14e63561ac693aba83eb7d86ec29b370243f5626507a55"
     },
     {
       "file": "case_O.png",
-      "sha256": "b12e0d52c7cee69c135243c1fc2fc640fc919733b1baf8541e27ce3daa0d21ef"
+      "sha256": "112321c679b16e5c2097d6c0dd7b0e55d991c9957be36f6574c91ab446b26cda"
     }
   ]
 }
