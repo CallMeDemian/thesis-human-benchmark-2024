@@ -1,0 +1,145 @@
+{
+  "candidate_firms": 110,
+  "top20": [
+    {
+      "firm_key": "005030::2024",
+      "firm_name": "부산주공",
+      "keyword_score": 5,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\", \"만기\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "088800::2024",
+      "firm_name": "에이스테크",
+      "keyword_score": 5,
+      "action_keyword_hits": "{\"OE\": [\"구조조정\", \"비용\", \"수익성\"], \"DL\": [\"상환\"], \"RF\": [\"만기\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "353190::2024",
+      "firm_name": "휴럼",
+      "keyword_score": 5,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\", \"만기\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "033640::2024",
+      "firm_name": "네패스",
+      "keyword_score": 4,
+      "action_keyword_hits": "{\"OE\": [\"수익성\"], \"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "123330::2024",
+      "firm_name": "제닉",
+      "keyword_score": 4,
+      "action_keyword_hits": "{\"OE\": [\"효율\"], \"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "126600::2024",
+      "firm_name": "BGF에코머티리얼즈",
+      "keyword_score": 4,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "142210::2024",
+      "firm_name": "유니트론텍",
+      "keyword_score": 4,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "007820::2024",
+      "firm_name": "에스엠코어",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "008040::2024",
+      "firm_name": "사조동아원",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "009310::2024",
+      "firm_name": "참엔지니어링",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "010280::2024",
+      "firm_name": "아이티센엔텍",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "011230::2024",
+      "firm_name": "삼화전자공업",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "047400::2024",
+      "firm_name": "유니온머티리얼",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "053700::2024",
+      "firm_name": "삼보모터스",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"OE\": [\"수익성\"], \"RF\": [\"만기\"], \"WC\": [\"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "065690::2024",
+      "firm_name": "파커스",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "073190::2024",
+      "firm_name": "듀오백",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "079900::2024",
+      "firm_name": "전진건설로봇",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"OE\": [\"수익성\"], \"WC\": [\"매출채권\", \"채권\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "079960::2024",
+      "firm_name": "동양이엔피",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"OE\": [\"비용\", \"수익성\"], \"DL\": [\"순현금\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "198440::2024",
+      "firm_name": "강동씨앤엘",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    },
+    {
+      "firm_key": "237750::2024",
+      "firm_name": "피앤씨테크",
+      "keyword_score": 3,
+      "action_keyword_hits": "{\"DL\": [\"차입\", \"차입금\"], \"RF\": [\"단기차입\"]}",
+      "reviewed_in_bounded_pass3": false
+    }
+  ]
+}

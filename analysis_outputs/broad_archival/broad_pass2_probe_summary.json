@@ -1,22 +1,22 @@
 {
-  "queue_n": 6,
-  "request_n": 18,
-  "positive_2024_source_pages": 7,
+  "queue_n": 341,
+  "request_n": 1023,
+  "positive_2024_source_pages": 344,
   "by_source": {
     "IRGO": {
-      "requests": 6,
-      "http200": 6,
-      "has2024": 6
+      "requests": 341,
+      "http200": 341,
+      "has2024": 321
     },
     "ALPHASQUARE": {
-      "requests": 6,
-      "http200": 6,
+      "requests": 341,
+      "http200": 341,
       "has2024": 0
     },
     "STOCKREPORT": {
-      "requests": 6,
-      "http200": 5,
-      "has2024": 1
+      "requests": 341,
+      "http200": 149,
+      "has2024": 23
     }
   }
 }
