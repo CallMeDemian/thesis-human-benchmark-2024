@@ -1,0 +1,266 @@
+{
+  "queue_n": 147,
+  "window_rows": 1277,
+  "firms_with_canonical_keyword_leads": 32,
+  "lead_firms": [
+    {
+      "firm_key": "039130::2024",
+      "firm_name": "하나투어",
+      "lead_windows": 25,
+      "canonical_keyword_hits": [
+        "CX",
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "185750::2024",
+      "firm_name": "종근당",
+      "lead_windows": 24,
+      "canonical_keyword_hits": [
+        "CX",
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "036930::2024",
+      "firm_name": "주성엔지니어링",
+      "lead_windows": 20,
+      "canonical_keyword_hits": [
+        "CX",
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "001060::2024",
+      "firm_name": "JW중외제약",
+      "lead_windows": 12,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "005180::2024",
+      "firm_name": "빙그레",
+      "lead_windows": 12,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "003850::2024",
+      "firm_name": "보령",
+      "lead_windows": 11,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "166090::2024",
+      "firm_name": "하나머티리얼즈",
+      "lead_windows": 11,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "092730::2024",
+      "firm_name": "네오팜",
+      "lead_windows": 10,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "104830::2024",
+      "firm_name": "원익머트리얼즈",
+      "lead_windows": 10,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "000990::2024",
+      "firm_name": "DB하이텍",
+      "lead_windows": 9,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "081660::2024",
+      "firm_name": "휠라홀딩스",
+      "lead_windows": 9,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "005850::2024",
+      "firm_name": "에스엘",
+      "lead_windows": 8,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "091810::2024",
+      "firm_name": "티웨이항공",
+      "lead_windows": 8,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "339770::2024",
+      "firm_name": "교촌에프앤비",
+      "lead_windows": 8,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "281820::2024",
+      "firm_name": "케이씨텍",
+      "lead_windows": 7,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "417200::2024",
+      "firm_name": "LS머트리얼즈",
+      "lead_windows": 7,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    },
+    {
+      "firm_key": "450080::2024",
+      "firm_name": "에코프로머티리얼즈",
+      "lead_windows": 7,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    },
+    {
+      "firm_key": "036200::2024",
+      "firm_name": "유니셈",
+      "lead_windows": 6,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "298020::2024",
+      "firm_name": "효성티앤씨",
+      "lead_windows": 6,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "419530::2024",
+      "firm_name": "SAMG엔터",
+      "lead_windows": 6,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "010060::2024",
+      "firm_name": "OCI홀딩스",
+      "lead_windows": 5,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    },
+    {
+      "firm_key": "439580::2024",
+      "firm_name": "블루엠텍",
+      "lead_windows": 4,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "100090::2024",
+      "firm_name": "SK오션플랜트",
+      "lead_windows": 3,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "393210::2024",
+      "firm_name": "토마토시스템",
+      "lead_windows": 3,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "013120::2024",
+      "firm_name": "동원개발",
+      "lead_windows": 2,
+      "canonical_keyword_hits": [
+        "CX"
+      ]
+    },
+    {
+      "firm_key": "121600::2024",
+      "firm_name": "나노신소재",
+      "lead_windows": 2,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "333620::2024",
+      "firm_name": "엔시스",
+      "lead_windows": 2,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "005160::2024",
+      "firm_name": "동국산업",
+      "lead_windows": 1,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    },
+    {
+      "firm_key": "017960::2024",
+      "firm_name": "한국카본",
+      "lead_windows": 1,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "025540::2024",
+      "firm_name": "한국단자공업",
+      "lead_windows": 1,
+      "canonical_keyword_hits": [
+        "OE"
+      ]
+    },
+    {
+      "firm_key": "036010::2024",
+      "firm_name": "아비코전자",
+      "lead_windows": 1,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    },
+    {
+      "firm_key": "100120::2024",
+      "firm_name": "뷰웍스",
+      "lead_windows": 1,
+      "canonical_keyword_hits": [
+        "WC"
+      ]
+    }
+  ]
+}
