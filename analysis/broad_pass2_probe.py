@@ -92,12 +92,18 @@ def main():
         r,src,url=task
         status,final,html=fetch(url)
         text=clean_text(html)[:250000] if not html.startswith("ERROR ") else html
+        report_tail=""
+        if src=="IRGO":
+            i=text.find("리포트")
+            if i>=0:
+                report_tail=text[i:i+18000]
         return {
             "firm_key":r["firm_key"],"stock_code":r["stock_code"],"firm_name":r["firm_name"],
             "source_index":src,"http_status":status,"final_url":final,
             "has_2024":("2024" in text),"text_len":len(text),
             "snippets_2024":json.dumps(snippets(text),ensure_ascii=False),
             "anchors_2024":json.dumps(anchor_inventory(html,final),ensure_ascii=False),
+            "report_tail":report_tail,
         }
     with ThreadPoolExecutor(max_workers=8) as ex:
         futs=[ex.submit(one,t) for t in tasks]
