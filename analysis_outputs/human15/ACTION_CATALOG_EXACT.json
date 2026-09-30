@@ -1,0 +1,119 @@
+[
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "A0"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0.3469549324277901,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "DL"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0.4741061962838509,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "RF"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0.6310184441953189,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "CX"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0.4670519522227794,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0.699188061599954,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "WC1"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": -0.8178580660378577,
+      "ar_turnover_chg": 0.3113679681485196,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0.46612537439996926,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "WC2"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": -0.013441303306167718,
+      "deleveraging_total_debt_pct": 0,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": -0.008584733695356256
+    },
+    "candidate_id": "OE"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": 0,
+      "ar_turnover_chg": 0,
+      "cogs_ratio_chg": -0.006720651653083859,
+      "deleveraging_total_debt_pct": 0.17347746621389504,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": -0.004292366847678128
+    },
+    "candidate_id": "MX1"
+  },
+  {
+    "action": {
+      "ap_turnover_chg": -0.2453574198113573,
+      "ar_turnover_chg": 0.18682078088911175,
+      "cogs_ratio_chg": 0,
+      "deleveraging_total_debt_pct": 0.17347746621389504,
+      "growth_capex_reduction_pct": 0,
+      "inv_turnover_chg": 0.27967522463998157,
+      "refinancing_short_debt_pct": 0,
+      "sga_ratio_chg": 0
+    },
+    "candidate_id": "MX2"
+  }
+]

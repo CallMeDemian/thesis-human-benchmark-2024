@@ -1,0 +1,92 @@
+[
+  {
+    "case_alias": "J",
+    "firm_key": "251370::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "LEVERAGE",
+    "firm_name": "와이엠티",
+    "selection_metrics": {
+      "debt": 0.5610141004,
+      "current": 0.9674770669,
+      "short": 0.3402789559,
+      "capex": 0.4666228948,
+      "margin": -0.06349690718,
+      "wc": 0.4504534165
+    }
+  },
+  {
+    "case_alias": "K",
+    "firm_key": "002990::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "LIQUIDITY",
+    "firm_name": "금호건설",
+    "selection_metrics": {
+      "debt": 0.8367850209,
+      "current": 0.9021563853,
+      "short": 0.5841737681,
+      "capex": 4.099173209e-05,
+      "margin": -0.09787319441,
+      "wc": 0.08066470779599999
+    }
+  },
+  {
+    "case_alias": "L",
+    "firm_key": "219130::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "SHORT_DEBT",
+    "firm_name": "타이거일렉",
+    "selection_metrics": {
+      "debt": 0.3131644106,
+      "current": 1.558978064,
+      "short": 1.0,
+      "capex": 0.03911523943,
+      "margin": -0.03101014802,
+      "wc": 0.446733355
+    }
+  },
+  {
+    "case_alias": "M",
+    "firm_key": "032560::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "WORKING_CAPITAL",
+    "firm_name": "황금에스티",
+    "selection_metrics": {
+      "debt": 0.1756508942,
+      "current": 3.12183052,
+      "short": 1.0,
+      "capex": 0.01490002249,
+      "margin": 0.04022138929,
+      "wc": 0.6581903891
+    }
+  },
+  {
+    "case_alias": "N",
+    "firm_key": "036930::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "CAPEX",
+    "firm_name": "주성엔지니어링",
+    "selection_metrics": {
+      "debt": 0.4257742297,
+      "current": 2.055670989,
+      "short": 0.0,
+      "capex": 0.07569395259,
+      "margin": 0.2396829937,
+      "wc": 0.32909916765999997
+    }
+  },
+  {
+    "case_alias": "O",
+    "firm_key": "120240::2024",
+    "panel": "ADDITIONAL_STATE_6",
+    "selection_stratum": "STRONG_BALANCE_SHEET",
+    "firm_name": "대정화금",
+    "selection_metrics": {
+      "debt": 0.1439817812,
+      "current": 3.972534245,
+      "short": 1.0,
+      "capex": 0.01224047506,
+      "margin": 0.09187144703,
+      "wc": 0.2909912421
+    }
+  }
+]

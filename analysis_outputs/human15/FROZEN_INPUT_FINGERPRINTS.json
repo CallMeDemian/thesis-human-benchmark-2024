@@ -1,0 +1,7 @@
+{
+  "protocol_sha256": "9bf01709ba9ff854cde5fdefb3eae18b160897753624b2eacfe70ce0544d9658",
+  "original_strict_csv_sha256": "77ab196aef24cc82723f0ebb76fc875c61241aa75ece56a251fa9d864a9e2894",
+  "original_case_key_sha256": "c25a8e744af6d95200b279570c41ac9fe4ed244926fbfedc5f7f6d6b908b6c78",
+  "payload_sha256": "10e78a84a1fdcd8af80b4057795214c896a20c4c1a7444a9cd01c7eab4dd3d56",
+  "prompt_contract_sha256": "66f6eefb5400c0cc8b252d8ea300920388b0dcae90ba50b46472423fb444a878"
+}
