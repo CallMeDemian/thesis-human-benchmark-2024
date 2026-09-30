@@ -2,25 +2,11 @@
 from __future__ import annotations
 import argparse, json, shutil
 from pathlib import Path
-import pandas as pd
 import h15_build as build
-
-base_display=build.display
-
-def sign_safe_display(value,kind):
-    if value is not None and not pd.isna(value) and kind not in {'text','year'}:
-        x=float(value)
-        if kind in {'pct','pp'} and x!=0 and abs(x*100)<.05:
-            unit='%' if kind=='pct' else '%p'
-            return ('0 < 값 < 0.1'+unit) if x>0 else ('−0.1'+unit+' < 값 < 0')
-        if kind in {'ratio','ratio_signed'} and x!=0 and abs(x)<.005:
-            return '0 < 값 < 0.01배' if x>0 else '−0.01배 < 값 < 0'
-    return base_display(value,kind)
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--human',required=True);p.add_argument('--repro',required=True);a=p.parse_args()
     h=Path(a.human);out=h/'analysis_outputs/human15'
-    build.display=sign_safe_display
     build.main()
     audit=json.loads((h/'evidence/ARCHIVAL_PASS3_REVIEW_20261001.json').read_text())
     targets=json.loads((out/'ARCHIVAL_PASS3_TARGETS.json').read_text())
@@ -77,6 +63,5 @@ BGF리테일(2024-12-02 하나), 에스피시스템스(2024-06-04 한국투자),
     (out/'REVIEW_REPORT_KO.md').write_text(report,encoding='utf-8')
     validation=json.loads((out/'VALIDATION.json').read_text())
     validation['archival_target_coverage']=17;validation['new_independent_expert_cases']=0;validation['separate_issuer_policy_cases']=1
-    validation['near_zero_display']='sign-safe bounded intervals; never substitute missing or small nonzero values by zero'
     build.dump(out/'VALIDATION.json',validation)
     print('H15_RELEASE_PASS; survey 15; independent expert archive 9 preserved; issuer extension 1.')
