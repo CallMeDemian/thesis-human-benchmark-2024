@@ -1,0 +1,67 @@
+name: Human-15 expansion
+on:
+  push:
+    branches: [analysis/human15-archival-expansion]
+    paths:
+      - 'analysis/h15_*.py'
+      - 'analysis/h15_*.gs'
+      - '.github/workflows/human15_expansion.yml'
+permissions:
+  contents: write
+concurrency:
+  group: human15-expansion
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: human
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          ref: thesis-v43-reproduction-kit-v1.0.4
+          path: repro
+          lfs: false
+          fetch-depth: 1
+      - name: Fetch only frozen payload
+        run: |
+          git -C repro lfs install --local
+          git -C repro lfs pull --include='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet' --exclude=''
+      - name: Install dependencies
+        run: |
+          python -m pip install pandas==2.2.3 pyarrow==19.0.1 pillow==11.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+      - name: Select and build
+        run: |
+          set -euo pipefail
+          if [ -f human/analysis/h15_select.py ]; then
+            python -m py_compile human/analysis/h15_select.py
+            python human/analysis/h15_select.py --human human --repro repro
+          fi
+          if [ -f human/analysis/h15_build.py ]; then
+            python -m py_compile human/analysis/h15_build.py
+            python human/analysis/h15_build.py --human human --repro repro
+          fi
+      - name: Commit generated outputs only
+        run: |
+          set -euo pipefail
+          git -C human config user.name 'github-actions[bot]'
+          git -C human config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if [ -d human/analysis_outputs/human15 ]; then
+            git -C human add analysis_outputs/human15
+            if ! git -C human diff --cached --quiet; then
+              git -C human commit -m 'build: freeze human-15 selection and survey artifacts'
+              git -C human pull --rebase origin analysis/human15-archival-expansion
+              git -C human push origin HEAD:analysis/human15-archival-expansion
+            fi
+          fi
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: human15-expansion-package
+          path: human/analysis_outputs/human15
+          if-no-files-found: warn
