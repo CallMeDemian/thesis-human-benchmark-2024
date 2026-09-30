@@ -10,10 +10,11 @@ permissions:
   contents: write
 concurrency:
   group: human15-expansion
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,37 +32,58 @@ jobs:
           git -C repro lfs install --local
           git -C repro lfs pull --include='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet' --exclude=''
       - name: Install dependencies
-        run: |
-          python -m pip install pandas==2.2.3 pyarrow==19.0.1 pillow==11.3.0
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq fonts-noto-cjk
-      - name: Select and build
+        timeout-minutes: 5
         run: |
           set -euo pipefail
-          if [ -f human/analysis/h15_select.py ]; then
-            python -m py_compile human/analysis/h15_select.py
-            python human/analysis/h15_select.py --human human --repro repro
-          fi
-          if [ -f human/analysis/h15_build.py ]; then
-            python -m py_compile human/analysis/h15_build.py
-            python human/analysis/h15_build.py --human human --repro repro
-          fi
-      - name: Commit generated outputs only
+          python -m pip install --disable-pip-version-check --timeout 60 --retries 1 pandas==2.2.3 pyarrow==19.0.1 pillow==11.3.0
+          sudo timeout 90 apt-get update -qq || true
+          sudo timeout 120 apt-get install -y -qq fonts-noto-cjk
+          test -f /usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc
+      - name: Select and build complete audited release
+        run: |
+          set -euo pipefail
+          python -m py_compile human/analysis/h15_select.py human/analysis/h15_build.py human/analysis/h15_run.py
+          python human/analysis/h15_select.py --human human --repro repro
+          python human/analysis/h15_run.py --human human --repro repro
+      - name: Commit generated outputs and pin image URLs
         run: |
           set -euo pipefail
           git -C human config user.name 'github-actions[bot]'
           git -C human config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          if [ -d human/analysis_outputs/human15 ]; then
-            git -C human add analysis_outputs/human15
-            if ! git -C human diff --cached --quiet; then
-              git -C human commit -m 'build: freeze human-15 selection and survey artifacts'
-              git -C human pull --rebase origin analysis/human15-archival-expansion
-              git -C human push origin HEAD:analysis/human15-archival-expansion
-            fi
+          git -C human add analysis_outputs/human15
+          if ! git -C human diff --cached --quiet; then
+            git -C human commit -m 'build: generate audited human-15 materials and separate issuer extension'
+          fi
+          git -C human pull --rebase origin analysis/human15-archival-expansion
+          git -C human push origin HEAD:analysis/human15-archival-expansion
+          export ASSET_COMMIT=$(git -C human rev-parse HEAD)
+          python - <<'PY'
+          import os, json
+          from pathlib import Path
+          p=Path('human/analysis_outputs/human15')
+          old='refs/heads/analysis/human15-archival-expansion/'
+          new=os.environ['ASSET_COMMIT']+'/'
+          for fn in ['CREATE_GOOGLE_FORM.gs','CREATE_GOOGLE_FORM.txt','respondent_spec.json']:
+              f=p/fn
+              f.write_text(f.read_text(encoding='utf-8').replace(old,new),encoding='utf-8')
+          (p/'ASSET_COMMIT.json').write_text(json.dumps({'immutable_image_commit':os.environ['ASSET_COMMIT'],'image_integrity':'per-image SHA256 checked by the Apps Script'},indent=2)+'\n')
+          PY
+          git -C human add analysis_outputs/human15
+          if ! git -C human diff --cached --quiet; then
+            git -C human commit -m 'release: pin survey images to immutable content commit'
+            git -C human push origin HEAD:analysis/human15-archival-expansion
           fi
       - uses: actions/upload-artifact@v4
         if: success()
         with:
           name: human15-expansion-package
           path: human/analysis_outputs/human15
-          if-no-files-found: warn
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: human15-code-only
+          path: |
+            human/analysis_outputs/human15/CREATE_GOOGLE_FORM.txt
+            human/analysis_outputs/human15/README_KO.md
+          if-no-files-found: error
