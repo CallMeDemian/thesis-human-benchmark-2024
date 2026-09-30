@@ -1,0 +1,159 @@
+{
+  "analysis_id": "HUMAN15_DOWNSTREAM_PRE_SURVEY_V1",
+  "status": "PASS",
+  "n_cases": 15,
+  "panels": {
+    "ARCHIVAL_ANCHOR_9": 9,
+    "ADDITIONAL_STATE_6": 6,
+    "ALL_15": 15
+  },
+  "comparison_contract": {
+    "mode": "candidate9",
+    "information_condition": "IC-b",
+    "budget": "B1",
+    "replicate": 1,
+    "analysis_population": "itt",
+    "phase": "MAIN",
+    "policies": [
+      "C4",
+      "C4R",
+      "C6-E"
+    ],
+    "regimes": [
+      "BASELINE",
+      "HIGH"
+    ]
+  },
+  "strict9_regression": {
+    "status": "PASS",
+    "checked_cells": 12,
+    "mismatches": []
+  },
+  "human_response_status": "NOT_COLLECTED",
+  "outputs": [
+    "downstream_candidate_ceiling.csv",
+    "downstream_case_level_long.csv",
+    "downstream_policy_summary.csv",
+    "downstream_policy_transitions.csv",
+    "downstream_reference_behavior.csv",
+    "downstream_case_table_wide.csv",
+    "downstream_strict9_regression_check.json",
+    "downstream_issuer_policy_extension.csv",
+    "HUMAN15_DOWNSTREAM_REPORT.md"
+  ],
+  "diagnostics": {
+    "analysis_id": "HUMAN15_DOWNSTREAM_PRE_SURVEY_V1",
+    "stage9": {
+      "BASELINE": {
+        "path": "frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv",
+        "sha256": "cc13a4bc0c98607b227c740c42bae029307741ad985e51673ae3d086b079c030",
+        "size_bytes": 22827155,
+        "columns": [
+          "request_id",
+          "cell_id",
+          "row_id",
+          "firm_key",
+          "model_key",
+          "phase",
+          "policy",
+          "mode",
+          "info",
+          "information_condition",
+          "budget",
+          "replicate",
+          "wave",
+          "parent_cell_id",
+          "parent_request_id",
+          "analysis_population",
+          "candidate_id",
+          "action_layer",
+          "action_application_status",
+          "reference_source",
+          "reference_row_id",
+          "reference_candidate_id",
+          "R_score_alpha",
+          "R_score_beta",
+          "R_score_gamma",
+          "noop_R_score_alpha",
+          "delta_R_score_alpha",
+          "noop_R_score_beta",
+          "delta_R_score_beta",
+          "noop_R_score_gamma",
+          "delta_R_score_gamma",
+          "source",
+          "firm_id",
+          "fiscal_year",
+          "Alpha",
+          "Beta",
+          "Gamma",
+          "OE_Alpha",
+          "OE_relative_delta_Alpha",
+          "switch_class_vs_OE",
+          "A0_Alpha",
+          "A0_Beta",
+          "A0_Gamma"
+        ],
+        "models": [
+          "google_gemini31flashlite",
+          "openai_gpt54mini"
+        ],
+        "matched_n": 15
+      },
+      "HIGH": {
+        "path": "frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv",
+        "sha256": "6c1d94c2f81ae5a8f8ec193be2b57d43047a24e14152fa2e897e0381e27cd3b4",
+        "size_bytes": 26573800,
+        "columns": [
+          "request_id",
+          "cell_id",
+          "row_id",
+          "firm_key",
+          "model_key",
+          "phase",
+          "policy",
+          "mode",
+          "info",
+          "information_condition",
+          "budget",
+          "replicate",
+          "wave",
+          "parent_cell_id",
+          "parent_request_id",
+          "analysis_population",
+          "candidate_id",
+          "action_layer",
+          "action_application_status",
+          "reference_source",
+          "reference_row_id",
+          "reference_candidate_id",
+          "R_score_alpha",
+          "R_score_beta",
+          "R_score_gamma",
+          "noop_R_score_alpha",
+          "delta_R_score_alpha",
+          "noop_R_score_beta",
+          "delta_R_score_beta",
+          "noop_R_score_gamma",
+          "delta_R_score_gamma",
+          "source",
+          "firm_id",
+          "fiscal_year",
+          "Alpha",
+          "Beta",
+          "Gamma",
+          "OE_Alpha",
+          "OE_relative_delta_Alpha",
+          "switch_class_vs_OE",
+          "A0_Alpha",
+          "A0_Beta",
+          "A0_Gamma"
+        ],
+        "models": [
+          "google_gemini31flashlite",
+          "openai_gpt54mini"
+        ],
+        "matched_n": 15
+      }
+    }
+  }
+}
