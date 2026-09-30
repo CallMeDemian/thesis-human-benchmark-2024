@@ -4,6 +4,7 @@ import argparse, csv, json, re, time
 from pathlib import Path
 import requests
 from bs4 import BeautifulSoup
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 URLS={
  "IRGO":"https://m.irgo.co.kr/IR-COMP/{code}",
@@ -22,10 +23,35 @@ def clean_text(html):
 
 def fetch(url):
     try:
-        r=requests.get(url,headers=UA,timeout=15,allow_redirects=True)
-        return r.status_code,r.url,clean_text(r.text)[:250000]
+        r=requests.get(url,headers=UA,timeout=12,allow_redirects=True)
+        return r.status_code,r.url,r.text
     except Exception as e:
         return 0,url,"ERROR "+repr(e)
+
+def anchor_inventory(html, base_url):
+    if html.startswith("ERROR "):
+        return []
+    soup=BeautifulSoup(html,"html.parser")
+    out=[]
+    for a in soup.find_all("a", href=True):
+        txt=re.sub(r"\s+"," ",a.get_text(" ",strip=True))
+        href=a.get("href","")
+        parent_txt=re.sub(r"\s+"," ",a.parent.get_text(" ",strip=True)) if a.parent else txt
+        context=(txt+" "+parent_txt)[:1200]
+        if "2024" not in context:
+            continue
+        if href.startswith("//"): href="https:"+href
+        elif href.startswith("/"):
+            from urllib.parse import urljoin
+            href=urljoin(base_url,href)
+        out.append({"text":txt[:500],"context":context,"href":href})
+    # deterministic de-duplication
+    seen=set(); ded=[]
+    for x in out:
+        key=(x["text"],x["href"])
+        if key in seen: continue
+        seen.add(key); ded.append(x)
+    return ded[:100]
 
 def snippets(txt, needles=("2024","2024-","2024.","2024/")):
     spans=[]
@@ -58,18 +84,27 @@ def main():
         wanted={"042000","063080","253590","129890","214180","104830"}
         q=[r for r in rows if r["stock_code"] in wanted]
     recs=[]
-    for j,r in enumerate(q,1):
-        code=r["stock_code"]; name=r["firm_name"]
+    tasks=[]
+    for r in q:
         for src,tpl in URLS.items():
-            status,final,text=fetch(tpl.format(code=code))
-            recs.append({
-                "firm_key":r["firm_key"],"stock_code":code,"firm_name":name,
-                "source_index":src,"http_status":status,"final_url":final,
-                "has_2024":("2024" in text),"text_len":len(text),
-                "snippets_2024":json.dumps(snippets(text),ensure_ascii=False),
-            })
-        if j%25==0: print(f"done {j}/{len(q)}",flush=True)
-        time.sleep(0.03)
+            tasks.append((r,src,tpl.format(code=r["stock_code"])))
+    def one(task):
+        r,src,url=task
+        status,final,html=fetch(url)
+        text=clean_text(html)[:250000] if not html.startswith("ERROR ") else html
+        return {
+            "firm_key":r["firm_key"],"stock_code":r["stock_code"],"firm_name":r["firm_name"],
+            "source_index":src,"http_status":status,"final_url":final,
+            "has_2024":("2024" in text),"text_len":len(text),
+            "snippets_2024":json.dumps(snippets(text),ensure_ascii=False),
+            "anchors_2024":json.dumps(anchor_inventory(html,final),ensure_ascii=False),
+        }
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        futs=[ex.submit(one,t) for t in tasks]
+        for j,fut in enumerate(as_completed(futs),1):
+            recs.append(fut.result())
+            if j%100==0: print(f"done {j}/{len(tasks)}",flush=True)
+    recs.sort(key=lambda x:(x["stock_code"],x["source_index"]))
     with (out/"broad_pass2_probe.csv").open("w",encoding="utf-8-sig",newline="") as f:
         w=csv.DictWriter(f,fieldnames=list(recs[0].keys()));w.writeheader();w.writerows(recs)
     positives=[x for x in recs if x["has_2024"]]
