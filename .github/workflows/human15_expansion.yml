@@ -42,9 +42,10 @@ jobs:
       - name: Select and build complete audited release
         run: |
           set -euo pipefail
-          python -m py_compile human/analysis/h15_select.py human/analysis/h15_build.py human/analysis/h15_run.py
+          python -m py_compile human/analysis/h15_select.py human/analysis/h15_build.py human/analysis/h15_run.py human/analysis/h15_downstream_analysis.py
           python human/analysis/h15_select.py --human human --repro repro
           python human/analysis/h15_run.py --human human --repro repro
+          python human/analysis/h15_downstream_analysis.py --human human --repro repro --out human/analysis_outputs/human15/downstream
       - name: Commit generated outputs and pin image URLs
         run: |
           set -euo pipefail
