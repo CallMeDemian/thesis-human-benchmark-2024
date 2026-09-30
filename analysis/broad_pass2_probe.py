@@ -96,7 +96,8 @@ def main():
         if src=="IRGO":
             i=text.find("리포트")
             if i>=0:
-                report_tail=text[i:i+18000]
+                j=text.find("공시",i+3)
+                report_tail=text[i:(j if j>=0 else min(len(text),i+18000))]
         return {
             "firm_key":r["firm_key"],"stock_code":r["stock_code"],"firm_name":r["firm_name"],
             "source_index":src,"http_status":status,"final_url":final,
