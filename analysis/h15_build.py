@@ -50,9 +50,7 @@ def display(value,kind):
     if not math.isfinite(x): return '정보 없음'
     if kind in {'pct','pp'}:
         y=x*100; suffix='%' if kind=='pct' else '%p'
-        if y!=0 and abs(y)<.05: return ('+' if y>0 else '−')+'0.1'+suffix+' 미만'
         return (f'{y:+.1f}' if kind=='pp' else f'{y:.1f}')+suffix
-    if x!=0 and abs(x)<.005: return ('+' if x>0 else '−')+'0.01 미만'
     return (f'{x:+.2f}' if kind=='ratio_signed' else f'{x:.2f}')+('배' if 'ratio' in kind else '')
 
 class Canvas:
@@ -118,7 +116,7 @@ def main():
                 name=label(key,nm);value=display(row[key],kind);seen.append(key);canvas.row(name,value);lines.append(name+': '+value);md.append('- '+name+': '+value)
             groups.append({'title':title,'lines':lines});canvas.y+=5;md.append('')
         assert len(seen)==27 and set(seen)==set(fields)
-        canvas.paragraph('비율은 보통 소수 1자리, 배수·로그값은 소수 2자리로 표시합니다. 0에 가까운 비영(非零) 값은 0과 구분합니다.',22)
+        canvas.paragraph('비율은 소수 1자리, 배수·로그값은 소수 2자리로 표시합니다.',22)
         path=cards/f'case_{alias}.png';renders[path.name]=canvas.save(path)
         cases.append({'alias':alias,'groups':groups})
         md+=['질문 1. 향후 약 1년의 재무건전성 개선을 위해 우선 권고할 행동 하나를 선택해 주십시오.','유형: 객관식 / 필수','']
@@ -137,7 +135,7 @@ def main():
             if key=='log_assets': definition='원래 입력에 포함된 총자산의 부호 보존 로그 변환값. sign(총자산) × ln(1+|총자산|). 원액으로 역변환하거나 다른 단위로 바꾸지 않았습니다.'
             if key=='derived__long_debt_to_total_debt': definition='(유동성장기부채 + 비유동장기차입금) ÷ 총이자부부채.'
             dictionary.append(label(key,nm)+': '+definition)
-    spec={'title':'기업 재무행동 판단 연구','buildId':'H15-v1-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
+    spec={'title':'기업 재무행동 판단 연구','buildId':'H15-v2-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
     raw=json.dumps(spec,ensure_ascii=False,allow_nan=False)
     for name in cross.firm_name:
         assert name not in raw, 'Company identity leaked to respondent specification'
@@ -147,7 +145,7 @@ def main():
     (out/'CREATE_GOOGLE_FORM.gs').write_text(script,encoding='utf-8'); (out/'CREATE_GOOGLE_FORM.txt').write_text(script,encoding='utf-8')
     with tempfile.NamedTemporaryFile(mode='w',suffix='.js',encoding='utf-8') as tmp:
         tmp.write(script);tmp.flush();subprocess.run(['node','--check',tmp.name],check=True)
-    md=['# Google Form 수동 작성 원고 — H15-v1','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~O 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
+    md=['# Google Form 수동 작성 원고 — H15-v2','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~O 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
     (public/'COPY_PASTE_FORM_TEXT.md').write_text('\n\n'.join(md),encoding='utf-8')
     preview=['<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>H15 설문 미리보기</title><style>body{font:17px/1.65 sans-serif;max-width:860px;margin:30px auto;padding:0 18px}img{max-width:100%;height:auto}section{margin:42px 0;padding:24px;border:1px solid #ddd;border-radius:12px}label{display:block;margin:8px 0}p{white-space:pre-wrap}textarea{width:96%;min-height:80px}</style><body><h1>기업 재무행동 판단 연구</h1><p>오프라인 검토용. 응답을 수집하거나 전송하지 않습니다.</p><p>'+html.escape(INTRO)+'</p><h2>공통 안내</h2><p>'+html.escape(RULES)+'</p>']
     for c in cases:
@@ -157,7 +155,7 @@ def main():
     preview+=['</body></html>'];(public/'PREVIEW.html').write_text('\n'.join(preview),encoding='utf-8')
     report={'status':'BUILD_AND_STATIC_VALIDATION_PASS','n_cases':15,'preserved_original_aliases':list('ABCDEFGHI'),'new_aliases':list('JKLMNO'),'fields_per_case':27,'no_company_names_in_respondent_spec':True,'exact_catalog_matches_prompt':True,'script_node_syntax_check':'PASS','google_account_execution':'NOT_RUN','browser_visual_check':'NOT_RUN','image_render_checks':renders,'response_collection':'NOT_STARTED','original_strict_archive_modified':False}
     dump(out/'VALIDATION.json',report);dump(out/'respondent_spec.json',spec)
-    (out/'README_KO.md').write_text('''# 15개 사례 Google Form 패키지 — H15-v1
+    (out/'README_KO.md').write_text('''# 15개 사례 Google Form 패키지 — H15-v2
 
 ## 가장 빠른 사용 방법
 1. CREATE_GOOGLE_FORM.txt를 메모장으로 열어 전체 복사합니다.
@@ -183,7 +181,7 @@ SETTINGS.order를 REVERSE로 바꾸면 순서가 반대인 별도 초안을 만�
 ## 해석 범위
 기존 strict-9는 그대로이며 설문만 15개입니다. 추가 6개는 재무상태를 기준으로 선정한 사례이고 정답 행동은 지정하지 않았습니다. 전체 15개는 575개의 대표표본이 아닙니다. 기존 9개, 추가 6개, 합계 15개 결과를 나누어 제시하십시오. 초기 단일 판단 비교의 주 비교조건은 C4이며 C6-E는 외부 참조가 있어 절차까지 동일한 비교가 아닙니다.
 
-수치는 사람이 읽기 좋게 반올림했습니다. 매우 작은 비영 값은 0과 구분합니다. 회사명·종목코드·전문가 권고·모델 답·점수·2025년 결과는 응답 화면에 넣지 않았습니다. 산업코드는 원래 IC-b 값 그대로이며 산업명 해설을 새로 붙이지 않았습니다.
+수치는 사람이 읽기 좋게 반올림했습니다. 회사명·종목코드·전문가 권고·모델 답·점수·2025년 결과는 응답 화면에 넣지 않았습니다. 산업코드는 원래 IC-b 값 그대로이며 산업명 해설을 새로 붙이지 않았습니다.
 
 기존 9개 설문을 이미 배포했다면 응답을 보존하고 별도 버전으로 운영하십시오. 문항과 반올림 표시가 일부 정돈되어 있으므로 기존 응답과 무조건 합치지 마십시오. Google 계정의 실제 생성·로그아웃 접속·화면 검증은 연구자가 마지막으로 확인해야 합니다.
 ''',encoding='utf-8')
