@@ -26,6 +26,12 @@ Automated/AI summaries are discovery leads only. A report title or snippet canno
 
 No C3-E/C4/C4R/C6-E action, Simulator/Oracle score, 2025 outcome, or prior human-vs-model agreement may be read by the selection script.
 
+## Pass 3 recovery queue — previously identified but incomplete primary evidence
+
+In addition to newly discovered Pass-2 reports, re-open every frozen record for which a 2024 human report was already identified but the primary evidence was incomplete. This includes SECONDARY_SUMMARY_ONLY, PRIMARY_INDEX_AVAILABLE, DISCOVERY_INDEX_ONLY, PENDING_FULLTEXT_REVIEW, PRIMARY_REPORT_IDENTIFIED, PRIMARY_DOCUMENT_IDENTIFIED, PRIMARY_TEXT_REVIEW_PENDING, SECONDARY_SUMMARY_ACTION_CANDIDATE, PRIMARY_LATER_REPORT_PENDING, and INDEX_ONLY.
+
+This recovery queue is evaluated under the same source hierarchy and strict gate. Recovering the primary report can change an earlier provisional/no-action disposition only when the primary text itself supplies new evidence. A secondary summary is not retroactively promoted merely because its wording resembles a canonical action.
+
 ## Pass 3 — action-bearing primary review
 
 Any 2024 report discovered in Pass 2 that may contain a corporate financial/managerial action is reviewed using the existing source hierarchy and strict gate:
