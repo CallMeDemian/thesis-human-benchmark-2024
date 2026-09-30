@@ -1,0 +1,137 @@
+{
+  "review_id": "HB2024-PASS3-20261001",
+  "status": "BOUNDED_REVIEW_COMPLETE_NOT_EXHAUSTIVE_DISCOVERY",
+  "protocol": "protocol/EXPANSION_PROTOCOL_20261001.md",
+  "review_date": "2026-10-01",
+  "target_count": 17,
+  "primary_full_text_rechecked_count": 4,
+  "new_independent_expert_cases": 0,
+  "separate_issuer_policy_cases": 1,
+  "original_expert_strict_count": 9,
+  "mixed_source_archive_count_if_layers_listed_together": 10,
+  "new_source_layer": "IR_ONGOING_POLICY",
+  "limitations": [
+    "Existing strict-9 policy comparisons were already known; this is not an independent blinded human re-coding exercise.",
+    "A full 2024 primary report was not recovered for every target. Failure to recover is not evidence of no action.",
+    "No new LLM actions, Oracle payoffs or 2025 outcomes were consulted to select or map extension cases.",
+    "This extension does not overwrite HB2024-v1.0 or pool an issuer statement into an independent-expert performance baseline.",
+    "PDF text was available for three rechecked reports, but web screenshot requests failed. Decisions below use narrative passages, not charts or numerical tables."
+  ],
+  "records": [
+    {
+      "firm_key": "000670::2024", "firm_name": "영풍", "source_layer": "IR",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-05-27",
+      "sources_checked": ["https://www.ypzinc.co.kr/site/main/archive/post/young-poong-for-sustainability?catId=7&cp=1&listType=list&sortDirection=DESC"],
+      "finding": "Official dated page and attached Young Poong For Sustainability PDF link were visible. Attachment retrieval failed; no action is promoted from its title."
+    },
+    {
+      "firm_key": "001230::2024", "firm_name": "동국홀딩스", "source_layer": "IR",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-11-14",
+      "sources_checked": ["https://m.irgo.co.kr/IR-ROOM/001230/동국홀딩스-IR-ROOM"],
+      "finding": "Issuer IR index lists the 2024 third-quarter results material. Sufficient presentation text for canonical action coding was not recovered."
+    },
+    {
+      "firm_key": "010130::2024", "firm_name": "고려아연", "source_layer": "CRA",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-11-20",
+      "sources_checked": ["https://www.yna.co.kr/view/AKR20241120126100008", "https://www.mt.co.kr/stock/2024/11/20/2024112017122445062"],
+      "finding": "Secondary coverage identifies Korea Ratings' request for effective alternatives to relieve financial burden. This is not a recovered primary passage specifying principal repayment. No DL label is inferred."
+    },
+    {
+      "firm_key": "017250::2024", "firm_name": "인터엠", "source_layer": "IR",
+      "decision": "ADD_SEPARATE_ISSUER_ONGOING_POLICY_LAYER", "primary_full_text_rechecked": true,
+      "source_date": "2024-11-12", "statement_type": "STATED_MANAGEMENT_POLICY", "mapped_action": "OE",
+      "sources_checked": ["https://www.newswire.co.kr/newsRead.php?no=1000575&picno=561709"],
+      "locator": "Closing sentence immediately after the paragraph attributing FY2024 profit improvement to expense/cost reduction and process improvement; before the company introduction.",
+      "short_quote": "인터엠은 흑자 기조를 유지하며 내부 혁신과 비용 효율화 작업에 주력하고 있다.",
+      "finding": "The release has both retrospective performance attribution and an explicit present-tense statement of continuing cost-efficiency work. The earlier temporal-only rejection did not capture that latter sentence. Operating and SG&A cost control explicitly match OE at mechanism level. No material contradictory prospective co-action is stated in this short release.",
+      "qualification": "This is an issuer-provided release, not an independent analyst/CRA recommendation. It supports ongoing policy in November 2024, not a quantified 2025 cost reduction commitment, optimality, or causal effect. Keep the original v1 record unchanged and add this correction only in the separate IR layer."
+    },
+    {
+      "firm_key": "035890::2024", "firm_name": "서희건설", "source_layer": "CRA",
+      "decision": "RETAIN_NONSTRICT_TEMPORAL_SPECIFICITY", "primary_full_text_rechecked": true,
+      "source_date": "2024-12-23", "mapped_action_descriptive_only": "WC1",
+      "sources_checked": ["https://m.kisrating.com/fileDown.do?fileName=rs20241223-24.pdf&gubun=2&menuCd=R8"],
+      "locator": "Printed pages 5 and 7, financial analysis and business/financial outlook.",
+      "finding": "Receivables settlement is discussed as part of historical cash accumulation. The outlook discusses staggering project funding needs and operating cash flow, not a specific forward plan to speed receivables/inventory turnover. Do not convert cash-flow forecasts or construction scheduling into WC1."
+    },
+    {
+      "firm_key": "086450::2024", "firm_name": "동국제약", "source_layer": "EQUITY",
+      "decision": "RETAIN_NONSTRICT_MATERIAL_COACTION", "primary_full_text_rechecked": true,
+      "source_date": "2024-10-25", "mapped_action_descriptive_only": "OE",
+      "sources_checked": ["https://file.alphasquare.co.kr/media/pdfs/company-report/_241025%20%EB%8F%99%EA%B5%AD%EC%A0%9C%EC%95%BD_%EC%98%A8%EB%9D%BC%EC%9D%B8%20-%203Q24%20Preview_%EC%A0%95%ED%99%8D%EC%8B%9D_1193_Online%20report%20_%206_10p_%EB%8F%99%EA%B5%AD%EC%A0%9C%EC%95%BD.pdf"],
+      "locator": "LS Securities report page 1, paragraphs on healthcare selling commission and acquisition of Rebom Cosmetics.",
+      "finding": "Selling commissions have already declined with channel mix. Prospective manufacturing-cost benefits are tied to an acquisition and production-capacity integration. OE-only coding would suppress that material co-action."
+    },
+    {
+      "firm_key": "086890::2024", "firm_name": "이수앱지스", "source_layer": "EQUITY",
+      "decision": "RETAIN_NONSTRICT_TEMPORAL", "primary_full_text_rechecked": true,
+      "source_date": "2024-05-31", "mapped_action_descriptive_only": "OE",
+      "sources_checked": ["https://money2.daishin.com/PDF/Out/intranet_data/Product/ResearchCenter/Report/2024/05/50165_ISU_Issue.pdf", "https://www.newspim.com/news/view/20240723000112"],
+      "locator": "Daishin report printed page 4, investment point 1; July Korea Investment report identified only through automated secondary coverage.",
+      "finding": "The primary text describes production and bioreactor changes already implemented, and transition costs already recognized. Continuing benefits and export leverage are forecasts, not a newly specified future/ongoing efficiency intervention. The July summary does not replace primary text."
+    },
+    {
+      "firm_key": "109740::2024", "firm_name": "디에스케이", "source_layer": "IR",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-10-23", "sources_checked": ["https://m.irgo.co.kr/IR-COMP/109740/"],
+      "finding": "The prior IR event reference remains; renewed page retrieval failed and a sufficient in-window action-bearing original was not recovered."
+    },
+    {
+      "firm_key": "250030::2024", "firm_name": "진코스텍", "source_layer": "IR",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-11-29", "sources_checked": ["https://m.irgo.co.kr/IR-COMP/250030/진코스텍-IR-PAGE", "https://financialfilings.com/companies/jincostech-coltd/2024/"],
+      "finding": "Search/index evidence identifies the IR event result. Full presentation text sufficient for action coding remains unavailable."
+    },
+    {
+      "firm_key": "277810::2024", "firm_name": "레인보우로보틱스", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-12-03", "sources_checked": ["https://www.newspim.com/news/view/20241203000189", "https://m.irgo.co.kr/IR-COMP/277810/"],
+      "finding": "Report discovery concerns sales-network and humanoid development growth. Original iM report text was not recovered; do not promote from an automated summary."
+    },
+    {
+      "firm_key": "282330::2024", "firm_name": "BGF리테일", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE_WITH_NEW_LEAD", "primary_full_text_rechecked": false,
+      "source_date": "2024-11-08", "sources_checked": ["https://www.newspim.com/news/view/20241108000866", "https://www.newspim.com/news/view/20241202000071", "https://www.mt.co.kr/stock/2024/12/02/2024120208183766063"],
+      "finding": "An additional 2024-12-02 Hana report, 그래도 안정적인 편의점, is identified. Secondary reporting discusses rental costs and SG&A efficiency, but sufficient original report text and the timing/mechanism gate remain unverified. Keep as a specific recovery lead, not a new strict OE case."
+    },
+    {
+      "firm_key": "290560::2024", "firm_name": "파라택시스이더리움", "historical_2024_name": "신시웨이", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-12-26", "sources_checked": ["https://www.newspim.com/news/view/20241226000040", "https://stockreport.kr/stocks/290560"],
+      "finding": "The identified IBK report concerns cloud and service revenue growth. A complete primary report was not recovered. Preserve the historical name and do not map growth to OE."
+    },
+    {
+      "firm_key": "307950::2024", "firm_name": "현대오토에버", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-08-29", "sources_checked": ["https://member.newspim.com/news/view/20240829000085", "https://m.irgo.co.kr/IR-COMP/307950/"],
+      "finding": "Kiwoom report identified via summary and report index. Its smart-factory/customer-investment growth thesis is not itself an issuer canonical financial action. Original text remains unavailable."
+    },
+    {
+      "firm_key": "310870::2024", "firm_name": "디와이씨", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-12-20", "sources_checked": ["https://www.newspim.com/news/view/20241220000073"],
+      "finding": "Automated summary identifies Korea Investment report on demand, pricing and margin recovery; no sufficient primary financial-action passage recovered."
+    },
+    {
+      "firm_key": "317830::2024", "firm_name": "에스피시스템스", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE_WITH_NEW_LEAD", "primary_full_text_rechecked": false,
+      "source_date": "2024-06-04", "sources_checked": ["https://www.newspim.com/news/view/20240604000160"],
+      "finding": "Automated summary explicitly mentions limited hiring plans and SG&A control but also continuing new-business costs. This is a recovery lead requiring the actual Korea Investment report and co-action review, not sufficient primary evidence."
+    },
+    {
+      "firm_key": "370090::2024", "firm_name": "퓨런티어", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE_WITH_EXACT_PDF_LEAD", "primary_full_text_rechecked": false,
+      "source_date": "2024-12-10", "sources_checked": ["https://t.me/s/shinhanresearch/43512", "http://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=331273", "https://bbs2.shinhansec.com/board/message/file.pdf.do?attachmentId=331273"],
+      "finding": "The research-channel listing supplies an exact PDF attachment URL and publication timing. Both attempted PDF retrievals failed. The available listing discusses demand/orders, not a verified canonical financial intervention."
+    },
+    {
+      "firm_key": "448710::2024", "firm_name": "코츠테크놀로지", "source_layer": "EQUITY",
+      "decision": "RETAIN_PRIMARY_UNAVAILABLE", "primary_full_text_rechecked": false,
+      "source_date": "2024-12-13", "sources_checked": ["https://m.irgo.co.kr/IR-COMP/448710/"],
+      "finding": "Report/issuer index recovered but the full Korea Investment update was not. Export/customer order growth is not treated as a canonical financial-management action."
+    }
+  ]
+}

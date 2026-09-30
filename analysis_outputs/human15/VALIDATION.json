@@ -1,0 +1,149 @@
+{
+  "status": "BUILD_AND_STATIC_VALIDATION_PASS",
+  "n_cases": 15,
+  "preserved_original_aliases": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I"
+  ],
+  "new_aliases": [
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O"
+  ],
+  "fields_per_case": 27,
+  "no_company_names_in_respondent_spec": true,
+  "exact_catalog_matches_prompt": true,
+  "script_node_syntax_check": "PASS",
+  "google_account_execution": "NOT_RUN",
+  "browser_visual_check": "NOT_RUN",
+  "image_render_checks": {
+    "case_A.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "4a1e585f1b12a836f688c52d08cf39f80595d67e31bde0698087d629d069c644"
+    },
+    "case_B.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "58f398fa02344a0519a5ad14f07028bc088f53ff3571802827c6dcbfc6862471"
+    },
+    "case_C.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "5963482b6b0e0c57a1546296eb68dc1d4d3a02b505501713d2e205feb4c87ba1"
+    },
+    "case_D.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "7d7669d72268b1ae397938fbdc50a2d2ed53544dcc73558320b6b5abe0550e16"
+    },
+    "case_E.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "8422834dd02b883df8d706760456e6f35a7d258a02a3ae204073362650b566d3"
+    },
+    "case_F.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "251f2dc89fb806f894ccd8ef2552689ee40586ca5ae1e1adc0518f9ac423348b"
+    },
+    "case_G.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "33f869110f8b9214e5935afcbcfe85d0fe55d71af64343bb3468f49f445b58ff"
+    },
+    "case_H.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "636904605150a6f1ac4013f26a8c4f0922d58061dd6e260ca36c1649bd516fa8"
+    },
+    "case_I.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "3f45e5658f23b7a621bc2af7d2fb0ee8c49c994e1b98853b58a737e1e93c2c65"
+    },
+    "case_J.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "1dd6e5f411e41616e5e25a0dc8cb7e670f8021a6bba29041d13c884ba32c8bec"
+    },
+    "case_K.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "8e9e12798419d308b69d32db06d58db85cb741036d4839313b3bd0e0bb4b8f63"
+    },
+    "case_L.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "8f57dbe47888034616ca45f84c44937488ad68ddc8944d456b3b0ca0040d0043"
+    },
+    "case_M.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "803c573d53cecd036f6d5e234c8499fa779cc7951b276a7842f721a101c29ac2"
+    },
+    "case_N.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "57bb092f91455a41ba1a2973ffa845643be1e64478d0ae471824a02299ae0d1c"
+    },
+    "case_O.png": {
+      "width": 1100,
+      "height": 1954,
+      "max_text_right": 1033.48,
+      "render_bounds_check": "PASS",
+      "sha256": "b12e0d52c7cee69c135243c1fc2fc640fc919733b1baf8541e27ce3daa0d21ef"
+    },
+    "action_catalog.png": {
+      "width": 1100,
+      "height": 1273,
+      "max_text_right": 1046.62,
+      "render_bounds_check": "PASS",
+      "sha256": "b3fff3f07a91042e5411d8bce21531ec6739753d211c44db3a083c2e38d097f9"
+    }
+  },
+  "response_collection": "NOT_STARTED",
+  "original_strict_archive_modified": false,
+  "archival_target_coverage": 17,
+  "new_independent_expert_cases": 0,
+  "separate_issuer_policy_cases": 1,
+  "near_zero_display": "sign-safe bounded intervals; never substitute missing or small nonzero values by zero"
+}
