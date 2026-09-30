@@ -27,6 +27,7 @@ jobs:
           python analysis/broad_pass2_screen.py --human . --input analysis_outputs/broad_archival/broad_pass2_probe.csv --out analysis_outputs/broad_archival
           python analysis/broad_pass2_extract_reports.py --input analysis_outputs/broad_archival/broad_pass2_probe.csv --out analysis_outputs/broad_archival
           python analysis/broad_pass3_recovery.py --human . --out analysis_outputs/broad_archival
+          python analysis/broad_all575_title_scan.py --human . --out analysis_outputs/broad_archival
       - name: Commit outputs
         run: |
           git config user.name 'github-actions[bot]'
