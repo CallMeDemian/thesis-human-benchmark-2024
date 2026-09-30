@@ -39,8 +39,12 @@ def main():
     scored=[]
     for fk,x in agg.items():
         if fk in strict: continue
-        tails=[z.get("report_tail","") for z in x.get("raw_rows",[])] if x.get("raw_rows") else []
-        combined=" ".join(x["texts"]+[z.get("text","")+" "+z.get("context","") for z in x["anchors"]]+tails)
+        tails=[z.get("report_tail","") for z in x.get("raw_rows",[]) if z.get("source_index")=="IRGO"] if x.get("raw_rows") else []
+        report_2024=[]
+        for tail in tails:
+            for m in re.finditer(r"2024[-./]",tail):
+                report_2024.append(tail[max(0,m.start()-420):min(len(tail),m.start()+180)])
+        combined=" ".join(x["texts"]+[z.get("text","")+" "+z.get("context","") for z in x["anchors"]]+report_2024)
         termhits={}
         score=0
         for action,terms in TERMS.items():
