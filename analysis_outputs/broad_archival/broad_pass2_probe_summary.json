@@ -1,0 +1,22 @@
+{
+  "queue_n": 6,
+  "request_n": 18,
+  "positive_2024_source_pages": 7,
+  "by_source": {
+    "IRGO": {
+      "requests": 6,
+      "http200": 6,
+      "has2024": 6
+    },
+    "ALPHASQUARE": {
+      "requests": 6,
+      "http200": 6,
+      "has2024": 0
+    },
+    "STOCKREPORT": {
+      "requests": 6,
+      "http200": 5,
+      "has2024": 1
+    }
+  }
+}
