@@ -27,10 +27,10 @@ jobs:
           path: repro
           lfs: false
           fetch-depth: 1
-      - name: Fetch only frozen payload
+      - name: Fetch frozen payload and downstream evaluation files
         run: |
           git -C repro lfs install --local
-          git -C repro lfs pull --include='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet' --exclude=''
+          git -C repro lfs pull --include='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv' --exclude=''
       - name: Install dependencies
         timeout-minutes: 5
         run: |
