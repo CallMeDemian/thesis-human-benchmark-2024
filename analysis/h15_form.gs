@@ -38,14 +38,14 @@ function createHuman15Survey() {
     Logger.log('Existing draft: ' + FormApp.openById(previous).getEditUrl());
     return;
   }
-  const form = FormApp.create(SURVEY.title + ' [H15-v1 ' + SETTINGS.order + ']', false);
+  const form = FormApp.create(SURVEY.title + ' [' + SURVEY.buildId + ' ' + SETTINGS.order + ']', false);
   form.setCollectEmail(false).setLimitOneResponsePerUser(false).setPublishingSummary(false);
   form.setProgressBar(true).setShuffleQuestions(false).setShowLinkToRespondAgain(false);
   form.setIsQuiz(false).setAllowResponseEdits(false);
   const contact = SETTINGS.researcherContact.trim();
   form.setDescription(SURVEY.intro + (contact ? '\n\n연구 문의: ' + contact : '\n\n[배포 전 연구자 확인: 연구 문의처와 필요한 참여 안내를 입력하십시오.]'));
   form.setConfirmationMessage('응답해 주셔서 감사합니다.');
-  const sheet = SpreadsheetApp.create('기업 재무행동 설문 응답 H15-v1 ' + SETTINGS.order);
+  const sheet = SpreadsheetApp.create('기업 재무행동 설문 응답 ' + SURVEY.buildId + ' ' + SETTINGS.order);
   form.setDestination(FormApp.DestinationType.SPREADSHEET, sheet.getId());
   const consent = form.addMultipleChoiceItem().setTitle('연구 설명을 읽었으며 자발적으로 참여에 동의합니다.').setRequired(true);
   consent.setChoices([
@@ -70,7 +70,7 @@ function createHuman15Survey() {
       c.groups.forEach(function(g) { form.addSectionHeaderItem().setTitle(g.title).setHelpText(g.lines.join('\n')); });
     }
     form.addMultipleChoiceItem().setTitle('[' + c.alias + '] 향후 약 1년의 재무건전성 개선을 위해 우선적으로 권고할 행동 하나를 선택해 주십시오.')
-      .setHelpText('표시된 수치는 읽기 쉽게 반올림한 표준 프로그램입니다. 후보를 수정하거나 서로 결합하지 마십시오.')
+      .setHelpText('표시된 수치는 읽기 쉽게 반올림한 표준 프로그램입니다. 제시된 후보 중 하나를 그대로 선택해 주세요.')
       .setChoiceValues(SURVEY.actions).setRequired(true);
     form.addScaleItem().setTitle('[' + c.alias + '] 선택에 대한 확신 정도').setBounds(1,5).setLabels('매우 불확실','매우 확신').setRequired(true);
     form.addParagraphTextItem().setTitle('[' + c.alias + '] 선택 이유').setHelpText('핵심 재무상태와 고려한 상충관계를 1~3문장으로 적어 주십시오. 이름·기관명 등 개인정보는 적지 마십시오.').setRequired(true);
