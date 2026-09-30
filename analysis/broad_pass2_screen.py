@@ -35,10 +35,12 @@ def main():
         agg[fk]["sources"].append({"source":r["source_index"],"url":r["final_url"],"http":r["http_status"],"has2024":r["has_2024"]})
         agg[fk]["texts"].extend(sn)
         agg[fk]["anchors"].extend(an)
+        agg[fk].setdefault("raw_rows",[]).append({"source_index":r.get("source_index",""),"report_tail":r.get("report_tail","")})
     scored=[]
     for fk,x in agg.items():
         if fk in strict: continue
-        combined=" ".join(x["texts"]+[z.get("text","")+" "+z.get("context","") for z in x["anchors"]])
+        tails=[z.get("report_tail","") for z in x.get("raw_rows",[])] if x.get("raw_rows") else []
+        combined=" ".join(x["texts"]+[z.get("text","")+" "+z.get("context","") for z in x["anchors"]]+tails)
         termhits={}
         score=0
         for action,terms in TERMS.items():
