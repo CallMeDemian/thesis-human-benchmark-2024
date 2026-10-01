@@ -1,0 +1,44 @@
+name: Human-18 final release bundle
+on:
+  push:
+    branches: [analysis/human15-archival-expansion]
+    paths:
+      - 'analysis_outputs/HUMAN18_FINAL_HANDOFF.md'
+      - 'analysis_outputs/broad_archival/**'
+      - 'analysis_outputs/human18/**'
+      - '.github/workflows/human18_final_release.yml'
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate release surface
+        run: |
+          set -euo pipefail
+          test -f analysis_outputs/HUMAN18_FINAL_HANDOFF.md
+          test -f analysis_outputs/broad_archival/BROAD_PASS3_FINAL_REVIEW.md
+          test -f analysis_outputs/broad_archival/BROAD_PASS3_MANUAL_WEB_ADDENDUM.md
+          test -f analysis_outputs/broad_archival/strict_archival_extension_v2.csv
+          test -f analysis_outputs/human18/CREATE_GOOGLE_FORM.txt
+          test -f analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json
+          python - <<'PY'
+          import csv, json
+          with open('analysis_outputs/human18/RESEARCHER_ONLY_case_key.csv', encoding='utf-8-sig') as f:
+              rows=list(csv.DictReader(f))
+          assert len(rows)==18
+          assert ''.join(r['case_alias'] for r in rows)=='ABCDEFGHIJKLMNOPQR'
+          m=json.load(open('analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json', encoding='utf-8'))
+          assert m['status']=='PASS' and m['n_cases']==18
+          assert m['strict9_regression']['status']=='PASS'
+          print('FINAL_RELEASE_SURFACE_PASS')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: human18-final-release
+          path: |
+            analysis_outputs/HUMAN18_FINAL_HANDOFF.md
+            analysis_outputs/broad_archival/BROAD_PASS3_FINAL_REVIEW.md
+            analysis_outputs/broad_archival/BROAD_PASS3_MANUAL_WEB_ADDENDUM.md
+            analysis_outputs/broad_archival/strict_archival_extension_v2.csv
+            analysis_outputs/broad_archival/supplementary_archival_diagnostics_v2.csv
+            analysis_outputs/human18
