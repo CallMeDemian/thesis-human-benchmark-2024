@@ -25,7 +25,7 @@ RULES='''각 사례에서는 제공된 2024년 재무정보를 보고 향후 약
 
 재고회전율은 매출원가/재고, 매출채권회전율은 매출/매출채권, 매입채무회전율은 매출원가/매입채무입니다. 재고·채권 회전율 증가는 더 빠른 회수, 매입채무회전율 감소는 지급기간 연장 방향을 뜻합니다. 비용비율의 변화는 %p 단위입니다.
 
-비-A0 후보는 연구상 같은 표준 강도로 비교하지만, 실제 비용이나 효과가 같다는 뜻은 아닙니다. 회사 상황에 따라 실행 가능한 크기는 달라질 수 있습니다.
+비-A0 후보는 연구에서 같은 표준 강도로 맞춰 비교합니다. 실제 실행비용과 효과는 회사마다 다를 수 있습니다.
 
 기업명은 가려져 있으며 산업코드와 시장 구분은 원래 입력값을 그대로 표시합니다. '정보 없음'은 결측값으로 이해해 주세요. 화면에 제시된 정보만으로 판단해 주세요.'''
 INTRO='''본 설문은 기업의 재무정보를 바탕으로 향후 약 1년의 재무건전성 개선을 위해 어떤 관리행동을 우선적으로 권고하는지 알아보기 위한 연구입니다. 응답 결과는 학위논문의 통계분석에 활용하며, 같은 정보를 바탕으로 생성된 모델의 판단과 비교합니다.
@@ -108,7 +108,7 @@ def main():
     docs=[]; renders={}; cases=[]
     for row in data.to_dict('records'):
         alias=row['case_alias']; canvas=Canvas();canvas.text('사례 '+alias+'  |  2024년 재무정보',42,canvas.y,38,True);canvas.y+=64
-        canvas.paragraph('제공된 정보만으로 판단해 주십시오. 정보 없음은 0이 아닙니다.',24)
+        canvas.paragraph("화면에 나온 정보만 보고 판단해 주세요. '정보 없음'은 해당 항목의 값이 제공되지 않았다는 뜻입니다.",24)
         groups=[]; seen=[]; md=['## 사례 '+alias,'']
         for title,fs in old.FIELD_GROUPS:
             canvas.heading(title); lines=[]; md+=['### '+title,'']
@@ -119,23 +119,23 @@ def main():
         canvas.paragraph('비율은 소수 1자리, 배수·로그값은 소수 2자리로 표시합니다.',22)
         path=cards/f'case_{alias}.png';renders[path.name]=canvas.save(path)
         cases.append({'alias':alias,'groups':groups})
-        md+=['질문 1. 향후 약 1년의 재무건전성 개선을 위해 우선 권고할 행동 하나를 선택해 주십시오.','유형: 객관식 / 필수','']
+        md+=['질문 1. 향후 약 1년의 재무건전성 개선을 위해 가장 먼저 권고할 행동 하나를 골라 주세요.','유형: 객관식 / 필수','']
         md+=['- '+a+' — '+b+' | '+c for a,b,c in ACTIONS]
-        md+=['','질문 2. 선택에 대한 확신 정도: 1(매우 불확실)~5(매우 확신). / 필수','질문 3. 선택 이유를 1~3문장으로 적어 주십시오. / 필수','']
+        md+=['','질문 2. 선택에 대한 확신 정도: 1(매우 불확실)~5(매우 확신). / 필수','질문 3. 선택 이유를 1~3문장으로 적어 주세요. / 필수','']
         docs+=md
     cv=Canvas();cv.text('9개 표준 관리행동',42,cv.y,38,True);cv.y+=64
     cv.paragraph('수치는 읽기 쉽게 반올림한 값입니다. 후보 하나만 선택합니다.',24)
     for a,b,c in ACTIONS: cv.heading(a+' — '+b);cv.paragraph(c,27)
-    cv.paragraph('부채는 총이자부부채입니다. 회전율 변화는 가산 변화, 비용비율 변화는 %p입니다. 상세 의미는 폼의 공통 안내를 참고하십시오.',24)
+    cv.paragraph('부채는 총이자부부채를 뜻합니다. 회전율 변화는 가산 변화, 비용비율 변화는 %p입니다. 자세한 내용은 공통 안내를 참고해 주세요.',24)
     renders['action_catalog.png']=cv.save(cards/'action_catalog.png')
     dictionary=[]
     for group,fs in old.FIELD_GROUPS:
         for key,nm,kind in fs:
             definition=old.KOREAN_DEFS[key]
-            if key=='log_assets': definition='원래 입력에 포함된 총자산의 부호 보존 로그 변환값. sign(총자산) × ln(1+|총자산|). 원액으로 역변환하거나 다른 단위로 바꾸지 않았습니다.'
+            if key=='log_assets': definition='원래 입력에 포함된 총자산의 부호 보존 로그 변환값. sign(총자산) × ln(1+|총자산|). 설문에는 원래 입력의 로그값을 그대로 제시합니다.'
             if key=='derived__long_debt_to_total_debt': definition='(유동성장기부채 + 비유동장기차입금) ÷ 총이자부부채.'
             dictionary.append(label(key,nm)+': '+definition)
-    spec={'title':'기업 재무행동 판단 연구','buildId':'H18-v2-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
+    spec={'title':'기업 재무행동 판단 연구','buildId':'H18-v3-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
     raw=json.dumps(spec,ensure_ascii=False,allow_nan=False)
     for name in cross.firm_name:
         assert name not in raw, 'Company identity leaked to respondent specification'
@@ -146,7 +146,7 @@ def main():
     (out/'CREATE_GOOGLE_FORM.gs').write_text(script,encoding='utf-8'); (out/'CREATE_GOOGLE_FORM.txt').write_text(script,encoding='utf-8')
     with tempfile.NamedTemporaryFile(mode='w',suffix='.js',encoding='utf-8') as tmp:
         tmp.write(script);tmp.flush();subprocess.run(['node','--check',tmp.name],check=True)
-    md=['# Google Form 수동 작성 원고 — H18-v2','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~R 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
+    md=['# Google Form 수동 작성 원고 — H18-v3','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~R 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
     (public/'COPY_PASTE_FORM_TEXT.md').write_text('\n\n'.join(md),encoding='utf-8')
     preview=['<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>H15 설문 미리보기</title><style>body{font:17px/1.65 sans-serif;max-width:860px;margin:30px auto;padding:0 18px}img{max-width:100%;height:auto}section{margin:42px 0;padding:24px;border:1px solid #ddd;border-radius:12px}label{display:block;margin:8px 0}p{white-space:pre-wrap}textarea{width:96%;min-height:80px}</style><body><h1>기업 재무행동 판단 연구</h1><p>오프라인 검토용. 응답을 수집하거나 전송하지 않습니다.</p><p>'+html.escape(INTRO)+'</p><h2>공통 안내</h2><p>'+html.escape(RULES)+'</p>']
     for c in cases:
@@ -156,7 +156,7 @@ def main():
     preview+=['</body></html>'];(public/'PREVIEW.html').write_text('\n'.join(preview),encoding='utf-8')
     report={'status':'BUILD_AND_STATIC_VALIDATION_PASS','n_cases':18,'preserved_original_aliases':list('ABCDEFGHI'),'state_diversity_aliases':list('JKLMNO'),'broad_diagnostic_aliases':list('PQR'),'fields_per_case':27,'no_company_names_in_respondent_spec':True,'exact_catalog_matches_prompt':True,'script_node_syntax_check':'PASS','google_account_execution':'NOT_RUN','browser_visual_check':'NOT_RUN','image_render_checks':renders,'response_collection':'NOT_STARTED','original_strict_archive_modified':False}
     dump(out/'VALIDATION.json',report);dump(out/'respondent_spec.json',spec)
-    (out/'README_KO.md').write_text('''# 18개 사례 Google Form 패키지 — H18-v2
+    (out/'README_KO.md').write_text('''# 18개 사례 Google Form 패키지 — H18-v3
 
 ## 가장 빠른 사용 방법
 1. CREATE_GOOGLE_FORM.txt를 메모장으로 열어 전체 복사합니다.
@@ -186,6 +186,6 @@ SETTINGS.order를 REVERSE로 바꾸면 순서가 반대인 별도 초안을 만�
 
 기존 9개 설문을 이미 배포했다면 응답을 보존하고 별도 버전으로 운영하십시오. 문항과 반올림 표시가 일부 정돈되어 있으므로 기존 응답과 무조건 합치지 마십시오. Google 계정의 실제 생성·로그아웃 접속·화면 검증은 연구자가 마지막으로 확인해야 합니다.
 ''',encoding='utf-8')
-    print('H15_BUILD_PASS: 18 cases, 27 fields each; images verified; script syntax checked; Google runtime not executed.')
+    print('H18_BUILD_PASS: 18 cases, 27 fields each; images verified; script syntax checked; Google runtime not executed.')
 
 if __name__=='__main__': main()
