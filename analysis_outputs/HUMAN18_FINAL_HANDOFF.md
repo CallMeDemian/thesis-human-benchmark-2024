@@ -29,6 +29,15 @@ Additional screens:
 
 Focused Pass-3 review preserved the original source hierarchy and strict mapping gate. No strict rule was relaxed after downstream results were observed.
 
+## Manual Pass-3 spot verification
+
+After the automated broad search, the most plausible false-positive / near-canonical cases were manually checked against public 2024 analyst or issuer materials. The addendum covers 금호건설, 원익머트리얼즈, 유니셈, 하나머티리얼즈, DB하이텍, 휠라홀딩스, 비투엔, 쿠콘, 에스원 and TKG휴켐스.
+
+Result: **no additional independent-expert strict case**. The checks reinforce the same failure modes found in the automated audit: wrong actor, upstream noncanonical action, outcome-only wording, conflicting/later source hierarchy, or source-layer mismatch.
+
+See:
+- `analysis_outputs/broad_archival/BROAD_PASS3_MANUAL_WEB_ADDENDUM.md`
+
 ## Why strict-9 did not expand
 
 The dominant rejection patterns were:
