@@ -37,133 +37,133 @@
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "be2ff192788fb600898a122e242a2688f06db06263b542c45a9ed3a3404969c0"
+      "sha256": "2845018ab3805051b1455748bab4ae57d3664cce7c31a894f812c6bb2cc2ce2f"
     },
     "case_B.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "ec9776d11813492594e8850b3b460fd9f82975dd186424090e3252a15868c4c3"
+      "sha256": "654fb9968f764b3650a1b1ac86a37f1cbaea4f32a0ba67154f0d3555ea2d3c62"
     },
     "case_C.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "48428f07f8f5232c3618c6b712d81f41dde7273708b3d5a2985398538cfb76a1"
+      "sha256": "fdfef30d7b3d3c7aee46921b67f16238bbf647489a8aa5e57a9dcedb9b56f876"
     },
     "case_D.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "f00f5b39d306f11c2a26f491cfb334548072fa0b4c8a0498f7891d98b10df1bc"
+      "sha256": "b931d41b42831f9f46264621787cd433cc0f44b2765b2248cdc533aaa1592562"
     },
     "case_E.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1000.44,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "9e5af662549065a827b668f957aef89211733cc78b2f76d1ed3e562443be4d31"
+      "sha256": "5dd0eca3bf58805f4bfb8a2687f003f81907eb98d1db63fd6455e42e88066e82"
     },
     "case_F.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "1a5bfcf9be42dbc116c96563ed9263328c677fb958b98640e0ef38948a760b5e"
+      "sha256": "c6a357694d8aa30eebd37a309d66a6a85b7304b26f7dbc00ce25acc682e83e98"
     },
     "case_G.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "54e787e7d050a621c574fc943da5348b4a5ee22959e22a1c9aea21f3ce165d9b"
+      "sha256": "bd5d625efc2a38e569b0a1b34b8cbb071b92089c5ca0edd7b4ceda644282574a"
     },
     "case_H.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "569ecd9c9dce5ab0f9018541612c57e68da8a192dcebbf91a17fbb2e916ce0af"
+      "sha256": "908423ee1877fbd0df990f6eb1373cff20613937d0000bc4d4387cfa780e29bd"
     },
     "case_I.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "0391b6f733acfb691509206d859120318c019a5117e17b82dc0dad9637c4a1a2"
+      "sha256": "08ca000e6f863dbe3dc70c2194fabd92f39eee2417c384e9841f6ca3557b8e02"
     },
     "case_J.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1000.44,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "de1b6203d351309d8c3086d6b863f0e10b9a12bcfb1d3ad7a659a19cd4f41aed"
+      "sha256": "9f743446cfae07b066169884b3bd6fd040c6d4affd9d0289f7b6f5b81fbc4b66"
     },
     "case_K.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "75bb2d2c635160be5893001310ddce75ee1a2144196690f109c9d563b69b4c16"
+      "sha256": "46155416465b059ce159322887610fbad04875c9878b54f595cfe31d745b66fb"
     },
     "case_L.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1016.38,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "b7521b17a1ea4463f2d81bafe9d61599e617039d97a8e9461de413728aadb3a9"
+      "sha256": "fe08d219a0afa7b69ae742adde79c4cacae3fd42a36bdc499dae76890b31f9c3"
     },
     "case_M.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "cd702635dad842f7c90d8c12ecece8b7134624fe7af9901058bc3364b0124d7d"
+      "sha256": "bfc43f6b4d55fbedee89756d76887ca6724e97b1c1e90405506edd548ee710e9"
     },
     "case_N.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "60fc51c64117e2ac8b14e63561ac693aba83eb7d86ec29b370243f5626507a55"
+      "sha256": "67d0a2f05b1bb554327ce30fe3e78829627c50d542ab04f107294db98c3c7a97"
     },
     "case_O.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1000.44,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "112321c679b16e5c2097d6c0dd7b0e55d991c9957be36f6574c91ab446b26cda"
+      "sha256": "95223160bffa4881be6be8ba893292625a65b34a386d7f92c9bfa67d6211b8bf"
     },
     "case_P.png": {
       "width": 1100,
       "height": 1954,
       "max_text_right": 1032.31,
       "render_bounds_check": "PASS",
-      "sha256": "adee05f03df4fe3fa34c2f7ea145afe1a5402388b8e58b8a5f03141597ff7be0"
+      "sha256": "5dfcbaf54053ea00e3415dba2ba72c04e1294683d0de831a02cbbe068d520989"
     },
     "case_Q.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1000.44,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "a0455cfef136c8355f5e51835752f279539efb147acb60b9816a080f164be878"
+      "sha256": "7c50ad46a9a51210a46962ebac150ae1a9deef96cf2d689fa56c21466bafefc6"
     },
     "case_R.png": {
       "width": 1100,
       "height": 1954,
-      "max_text_right": 1000.44,
+      "max_text_right": 1021.69,
       "render_bounds_check": "PASS",
-      "sha256": "758ea0dd7aa0ad94bcaf445d64791a81b5d3bd62ab8c93a346147d7164f9ee67"
+      "sha256": "9beb11f23e55f895f0bc7e558bc86aa24cb9beee641e150f4818057e80af5cb4"
     },
     "action_catalog.png": {
       "width": 1100,
       "height": 1273,
       "max_text_right": 1046.62,
       "render_bounds_check": "PASS",
-      "sha256": "b3fff3f07a91042e5411d8bce21531ec6739753d211c44db3a083c2e38d097f9"
+      "sha256": "a375621d6eb7c7d1825b2961ac367308dbe945e1f486f2a06afd3e14a3672ef5"
     }
   },
   "response_collection": "NOT_STARTED",
