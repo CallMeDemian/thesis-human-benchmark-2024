@@ -33,3 +33,11 @@ Primary descriptive metric below is no-op-adjusted Oracle score (Δ vs A0). Beca
 This is a paired, same-substrate value comparison over only nine strict archival firms. It answers whether the mapped human action, C4, C6-E, or C3-E receives a higher counterfactual Oracle score on these firms. It does not establish that the higher-scoring policy would have produced the better realized credit outcome in the real world.
 
 Exact-action agreement and Oracle value are distinct outcomes: two policies can choose different actions yet receive similar or higher Oracle value, and a policy can match the human action while not maximize the evaluation substrate.
+## Extension note — 2026-10-01
+
+The Oracle-value table above remains unchanged and authoritative for the frozen strict-9 archival subset. The subsequent broad Pass-2 / Pass-3 search found **no additional independent-expert case** satisfying all frozen strict gates, so these human-mapped Oracle means are not recomputed on a post-hoc enlarged archival set.
+
+For the prospective Human-18 survey, the same frozen candidate9/IC-b/B1 model and Oracle outputs have been joined for all 18 cases in a separate downstream layer. J-R do not yet have human actions, so no Human-18 human-vs-Oracle comparison is reported before survey responses are collected.
+
+The strict-9 regression against the expanded pipeline is **PASS (12 cells, 0 mismatches)**. See `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_REPORT.md`.
+
