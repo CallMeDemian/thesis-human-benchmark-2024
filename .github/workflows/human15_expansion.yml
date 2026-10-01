@@ -9,8 +9,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: human15-expansion
-  cancel-in-progress: true
+  group: survey-generation-analysis-human15-archival-expansion
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
