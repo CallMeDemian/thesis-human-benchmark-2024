@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "all575_action_title_leads": 32,
+  "preexisting_review_complete": 30,
+  "final_manual_closure": 2,
+  "unresolved_after_completion": 0,
+  "new_independent_expert_strict_cases": 0,
+  "strict_anchor_count_after_broad_search": 9
+}
