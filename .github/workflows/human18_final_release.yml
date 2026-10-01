@@ -21,6 +21,9 @@ jobs:
           test -f analysis_outputs/broad_archival/strict_archival_extension_v2.csv
           test -f analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.json
           test -f analysis_outputs/human18/CREATE_GOOGLE_FORM.txt
+          test -f analysis_outputs/strict9/STRICT9_REPORT.md
+          test -f analysis_outputs/strict9/CHECKPOINT_20260930.md
+          test -f analysis_outputs/strict9/STRICT9_ORACLE_VALUE_REPORT.md
           test -f analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json
           python - <<'PY'
           import csv, json
@@ -50,5 +53,8 @@ jobs:
             analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.md
             analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.csv
             evidence/BROAD_PASS3_FINAL_TWO_LEADS_20261001.json
+            analysis_outputs/strict9/STRICT9_REPORT.md
+            analysis_outputs/strict9/CHECKPOINT_20260930.md
+            analysis_outputs/strict9/STRICT9_ORACLE_VALUE_REPORT.md
             analysis_outputs/broad_archival/supplementary_archival_diagnostics_v2.csv
             analysis_outputs/human18
