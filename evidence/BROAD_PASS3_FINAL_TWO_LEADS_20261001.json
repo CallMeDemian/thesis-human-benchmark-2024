@@ -1,0 +1,41 @@
+{
+  "review_id": "BROAD-PASS3-FINAL-TWO-LEADS-20261001",
+  "review_date": "2026-10-01",
+  "purpose": "Close the only two all-575 action-title leads without an existing reviewed mapping record.",
+  "records": [
+    {
+      "firm_key": "033640::2024",
+      "stock_code": "033640",
+      "firm_name": "네패스",
+      "decision": "NO_NEW_STRICT_CASE",
+      "source_layer": "EQUITY_SEARCH_PLUS_ISSUER",
+      "sources_checked": [
+        "https://alphasquare.co.kr/home/stock-issue?code=033640&type=report",
+        "https://www.nepes.co.kr/kr/ir/ir_news.php"
+      ],
+      "finding": "The securities-report index exposes no 2024 analyst report for Nepes; indexed reports jump from 2023 to 2026. The issuer has a 2024-04-04 technology/product news item on domestic HBM plating solution production, which is issuer-originated and describes product/technology commercialization rather than a clean candidate9 financial-management intervention.",
+      "strict_reason": "No eligible 2024 independent-expert action-bearing primary report was recovered; issuer product/technology growth evidence is not an independent expert canonical action.",
+      "archival_action": ""
+    },
+    {
+      "firm_key": "079960::2024",
+      "stock_code": "079960",
+      "firm_name": "동양이엔피",
+      "decision": "NO_NEW_STRICT_CASE",
+      "source_layer": "IR_INDEX",
+      "sources_checked": [
+        "https://m.irgo.co.kr/IR-COMP/079960/%EB%8F%99%EC%96%91%EC%9D%B4%EC%97%94%ED%94%BC-%EA%B8%B0%EC%97%85%EC%A0%95%EB%B3%B4"
+      ],
+      "finding": "IRGO shows a 2024-06-20 issuer IR event ('주요사업소개 및 현황') but its analyst-report section contains no 2024 independent research report. The observed 2024 item is an issuer presentation event, and no sufficiently complete action-bearing text was recovered to establish a canonical intervention.",
+      "strict_reason": "No eligible 2024 independent-expert action-bearing report was recovered; an issuer IR event without verified canonical action text cannot enter the independent expert strict anchor.",
+      "archival_action": ""
+    }
+  ],
+  "conclusion": {
+    "all575_action_title_leads": 32,
+    "preexisting_review_records": 30,
+    "newly_closed_leads": 2,
+    "unresolved_leads_after_review": 0,
+    "new_independent_expert_strict_cases": 0
+  }
+}
