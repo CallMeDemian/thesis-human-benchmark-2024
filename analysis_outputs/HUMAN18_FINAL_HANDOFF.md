@@ -135,6 +135,11 @@ Human-18:
 - `analysis_outputs/human18/case_states_ICb.csv`
 - `analysis_outputs/human18/respondent/`
 
+Preserved strict-9 analyses with extension linkage:
+- `analysis_outputs/strict9/STRICT9_REPORT.md`
+- `analysis_outputs/strict9/CHECKPOINT_20260930.md`
+- `analysis_outputs/strict9/STRICT9_ORACLE_VALUE_REPORT.md`
+
 Downstream:
 - `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_REPORT.md`
 - `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json`
