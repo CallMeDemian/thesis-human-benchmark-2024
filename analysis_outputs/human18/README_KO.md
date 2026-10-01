@@ -12,7 +12,7 @@
 SETTINGS.order를 REVERSE로 바꾸면 순서가 반대인 별도 초안을 만들 수 있습니다. 참여자는 둘 중 한 버전만 응답합니다. 폼 전체의 질문 섞기는 켜지 마십시오. 18개 사례 소요시간은 실제 파일럿으로 확인해야 합니다.
 
 ## 구성
-- respondent/cards: 사례 A~O 재무카드 15장과 행동 설명카드 1장
+- respondent/cards: 사례 A~R 재무카드 18장과 행동 설명카드 1장
 - respondent/PREVIEW.html: 오프라인 검토 화면(응답 전송 없음)
 - respondent/COPY_PASTE_FORM_TEXT.md: 수동 작성용 실제 재무값과 문항
 - CREATE_GOOGLE_FORM.gs / .txt: 동일한 자동 생성 코드
