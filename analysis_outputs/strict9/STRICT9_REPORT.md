@@ -67,3 +67,30 @@ The benchmark is also contemporaneous rather than matched-information: 2024 huma
 ## Next analysis boundary
 
 Do not broaden the strict set post hoc. Any later 13-case canonical sensitivity or 113-case action-space coverage analysis should be emitted as a separate layer and must not overwrite HB2024-v1.0.
+## Extension note — 2026-10-01 broad Pass-2 / Pass-3 and Human-18
+
+The strict-9 result above remains the authoritative independent-expert archival anchor. A substantially broader follow-up search was completed without relaxing the frozen source hierarchy or strict one-action gate:
+
+- 341 unresolved / previously negative firms entered broad Pass-2;
+- 1,023 public report-index requests were executed;
+- all 575 firms were additionally screened through report-title windows;
+- 32 non-strict action-term leads were taken to terminal Pass-3 review;
+- unresolved leads after completion: **0**;
+- newly eligible independent-expert strict cases: **0**.
+
+Accordingly, the independent-expert archival anchor remains **strict-9** rather than being post-hoc enlarged.
+
+The extension adds two separate layers that must not be pooled into strict-9:
+
+1. six financial-state diversity cases for matched-information human judgment (`ADDITIONAL_STATE_6`);
+2. three broad-search action-space diagnostic cases (`BROAD_DIAGNOSTIC_3`: 하나투어, 비투엔, 휠라홀딩스).
+
+The matched-information survey therefore contains **18 anonymized cases (A-R)** under the same `IC-b / candidate9 / B1` information/action contract. Model-side C4/C4R/C6-E/C3-E and Oracle Alpha/Beta/Gamma outputs have been joined for all 18 cases. The original strict-9 regression check remains **PASS: 12 cells checked, 0 mismatches**.
+
+See:
+- `analysis_outputs/HUMAN18_FINAL_HANDOFF.md`
+- `analysis_outputs/broad_archival/BROAD_PASS3_FINAL_REVIEW.md`
+- `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_REPORT.md`
+
+This extension does not convert Human-18 into an archival human benchmark. Only A-I carry frozen archival expert actions; J-R receive human labels only from the prospective matched-information survey.
+
