@@ -155,3 +155,13 @@ Still requiring researcher-side execution:
 - pilot completion-time check;
 - institutional human-subject / ethics procedure as applicable;
 - response collection and post-survey human-vs-model analysis.
+
+## 32-lead completion audit
+
+The all-575 action-title screen surfaced 32 non-strict firms for focused review. A terminal-disposition audit now confirms that all **32/32** leads are closed: 30 already had reviewed mapping records and the remaining two, 네패스 and 동양이엔피, were manually closed after checking their 2024 report / IR indexes. Neither produced an eligible 2024 independent-expert action-bearing report under the frozen strict gate.
+
+- unresolved title-screen leads: **0**
+- new independent-expert strict cases from the completion audit: **0**
+- final independent-expert archival anchor: **strict-9**
+
+See `analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.md` and `evidence/BROAD_PASS3_FINAL_TWO_LEADS_20261001.json`.
