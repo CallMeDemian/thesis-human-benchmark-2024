@@ -128,3 +128,32 @@ The next analysis is the 2025 realized-outcome follow-up:
 `2024 archival human action -> 2025 actual firm action -> 2025 realized financial change -> observed credit-status change`
 
 That follow-up is **not included as a finalized result in this checkpoint yet**. It should be added only after each firm's 2025 action, FY2025 financials, and comparable credit-rating evidence are source-audited and frozen.
+## 2026-10-01 extension checkpoint
+
+The earlier "next step" above has now been followed by a broader archival-search and matched-human design extension.
+
+### Broad archival re-search
+
+A broad Pass-2 / Pass-3 search was completed after this checkpoint. It covered 341 unresolved / previously negative firms, executed 1,023 public report-index requests, screened all 575 firms by report-title windows, and closed all 32 action-term Pass-3 leads. **No new independent-expert case passed the existing strict gate.** The frozen archival anchor therefore remains **9 firms**.
+
+This negative result is retained rather than weakening the mapping rule to increase sample size.
+
+### Human survey extension
+
+The matched-information human survey is now **18 cases**:
+
+- A-I: frozen strict archival anchor (9);
+- J-O: financial-state diversity cases (6);
+- P-R: broad-search action-space diagnostics (3).
+
+All respondent cases use anonymized FY2024 `IC-b`, `candidate9`, and `B1`. J-R have no archival "correct answer." Human responses will be analyzed as a judgment distribution rather than causal ground truth.
+
+### Downstream linkage
+
+C4, C4R, C6-E, C3-E, Oracle Alpha/Beta/Gamma, candidate ceiling, regret, reference uptake, and policy transitions are linked for all 18 cases. The preserved strict-9 comparison reproduces the checkpoint exactly: **12 comparison cells checked, 0 mismatches**.
+
+Current handoff:
+- `analysis_outputs/HUMAN18_FINAL_HANDOFF.md`
+- `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json`
+- `analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.md`
+
