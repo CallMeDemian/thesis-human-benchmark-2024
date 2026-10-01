@@ -1,0 +1,49 @@
+name: Human-18 downstream analysis
+on:
+  push:
+    branches: [analysis/human15-archival-expansion]
+    paths:
+      - 'analysis/h18_downstream_analysis.py'
+      - 'analysis_outputs/human18/RESEARCHER_ONLY_case_key.csv'
+      - '.github/workflows/human18_downstream.yml'
+permissions:
+  contents: write
+concurrency:
+  group: human18-downstream
+  cancel-in-progress: true
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: human
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          ref: thesis-v43-reproduction-kit-v1.0.4
+          path: repro
+          lfs: false
+          fetch-depth: 1
+      - name: Fetch frozen Stage-9 evaluation files
+        run: |
+          git -C repro lfs install --local
+          git -C repro lfs pull --include='frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv,frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv' --exclude=''
+      - name: Run Human-18 downstream analysis
+        run: |
+          set -euo pipefail
+          python -m py_compile human/analysis/h18_downstream_analysis.py
+          python human/analysis/h18_downstream_analysis.py --human human --repro repro --out human/analysis_outputs/human18/downstream
+      - name: Commit outputs
+        run: |
+          set -euo pipefail
+          git -C human config user.name 'github-actions[bot]'
+          git -C human config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C human add analysis_outputs/human18/downstream
+          if ! git -C human diff --cached --quiet; then
+            git -C human commit -m 'analysis: integrate Human-18 downstream results'
+            git -C human pull --rebase origin analysis/human15-archival-expansion
+            git -C human push origin HEAD:analysis/human15-archival-expansion
+          fi
