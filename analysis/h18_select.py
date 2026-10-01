@@ -47,7 +47,7 @@ def main():
     selected[["case_alias"]+fields].to_csv(out/"case_states_ICb.csv",index=False,encoding="utf-8-sig")
     (out/"ACTION_CATALOG_EXACT.json").write_text(json.dumps(contract["action_contract"]["catalog"],ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
     audit={
-      "build_id":"H18-v1-20261001","n_cases":18,
+      "build_id":"H18-v3-20261001","n_cases":18,
       "panels":{"ARCHIVAL_ANCHOR_9":9,"ADDITIONAL_STATE_6":6,"BROAD_DIAGNOSTIC_3":3},
       "base_h15_key_sha256":sha(h/"analysis_outputs/human15/RESEARCHER_ONLY_case_key.csv"),
       "broad_diagnostic_source_sha256":sha(h/"analysis_outputs/broad_archival/supplementary_archival_diagnostics_v2.csv"),
