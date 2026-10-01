@@ -64,6 +64,9 @@ These cases are **not** human answer keys. They are included in the survey becau
 
 ## Human survey structure
 
+Current respondent-facing build: **H18-v3-20261001**. This build uses the natural-Korean participant copy, ordinary human-readable rounding, and the frozen 27-field IC-b / candidate9 / B1 contract.
+
+
 - A-I: `ARCHIVAL_ANCHOR_9`
 - J-O: `ADDITIONAL_STATE_6`
 - P-R: `BROAD_DIAGNOSTIC_3`
@@ -136,6 +139,10 @@ Downstream:
 - `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_REPORT.md`
 - `analysis_outputs/human18/downstream/HUMAN18_DOWNSTREAM_MANIFEST.json`
 - case-level, policy-summary, transition and reference-behavior CSVs in the same directory.
+
+## Final broad-search closure
+
+The completion audit confirms that **all 32 title-screen leads have terminal dispositions**: 30 were already covered by reviewed mapping records and the final two (네패스, 동양이엔피) were manually closed. Unresolved leads after completion = **0**; new independent-expert strict cases = **0**.
 
 ## Reproducibility status
 
