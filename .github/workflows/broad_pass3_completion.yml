@@ -1,0 +1,35 @@
+name: Broad pass3 completion audit
+on:
+  push:
+    branches: [analysis/human15-archival-expansion]
+    paths:
+      - 'analysis/broad_pass3_completion_audit.py'
+      - 'evidence/BROAD_PASS3_FINAL_TWO_LEADS_20261001.json'
+      - '.github/workflows/broad_pass3_completion.yml'
+permissions:
+  contents: write
+concurrency:
+  group: broad-pass3-completion
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Run completion audit
+        run: |
+          set -euo pipefail
+          python analysis/broad_pass3_completion_audit.py --human . --out analysis_outputs/broad_archival
+      - name: Commit audit outputs
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add analysis_outputs/broad_archival/BROAD_PASS3_32_LEAD_COMPLETION_AUDIT.*
+          if ! git diff --cached --quiet; then
+            git commit -m 'analysis: close all 32 broad pass3 title leads'
+            git pull --rebase origin analysis/human15-archival-expansion
+            git push origin HEAD:analysis/human15-archival-expansion
+          fi
