@@ -133,6 +133,9 @@ def main():
         for key,nm,kind in fs:
             definition=old.KOREAN_DEFS[key]
             if key=='log_assets': definition='원래 입력에 포함된 총자산의 부호 보존 로그 변환값. sign(총자산) × ln(1+|총자산|). 설문에는 원래 입력의 로그값을 그대로 제시합니다.'
+            if key=='derived__debt_to_assets': definition='총부채 ÷ 총자산. 총이자부부채와는 별개의 지표입니다.'
+            if key=='derived__roa_proxy': definition='당기순이익 ÷ 기말 총자산. 기말 총자산을 분모로 사용합니다.'
+            if key=='derived__financial_cost_to_revenue': definition='광의의 금융비용 ÷ 매출. 이자 외 금융비용도 포함합니다.'
             if key=='derived__long_debt_to_total_debt': definition='(유동성장기부채 + 비유동장기차입금) ÷ 총이자부부채.'
             dictionary.append(label(key,nm)+': '+definition)
     spec={'title':'기업 재무행동 판단 연구','buildId':'H18-v3-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
