@@ -30,7 +30,7 @@ RULES='''각 사례에서는 제공된 2024년 재무정보를 보고 향후 약
 기업명은 가려져 있으며 산업코드와 시장 구분은 원래 입력값을 그대로 표시합니다. '정보 없음'은 결측값으로 이해해 주세요. 화면에 제시된 정보만으로 판단해 주세요.'''
 INTRO='''본 설문은 기업의 재무정보를 바탕으로 향후 약 1년의 재무건전성 개선을 위해 어떤 관리행동을 우선적으로 권고하는지 알아보기 위한 연구입니다. 응답 결과는 학위논문의 통계분석에 활용하며, 같은 정보를 바탕으로 생성된 모델의 판단과 비교합니다.
 
-기업명이 가려진 15개 사례가 제시됩니다. 각 사례에서 9개 행동 중 하나를 고르고, 선택에 대한 확신 정도와 간단한 이유를 적어 주세요. 판단은 화면에 제시된 자료를 기준으로 해 주세요. 외부 검색이나 생성형 AI의 도움보다 본인의 판단을 기준으로 응답해 주세요.
+기업명이 가려진 18개 사례가 제시됩니다. 각 사례에서 9개 행동 중 하나를 고르고, 선택에 대한 확신 정도와 간단한 이유를 적어 주세요. 판단은 화면에 제시된 자료를 기준으로 해 주세요. 외부 검색이나 생성형 AI의 도움보다 본인의 판단을 기준으로 응답해 주세요.
 
 설문은 익명으로 진행됩니다. 자유응답에는 개인정보나 직장 내부정보 대신 판단 근거만 적어 주세요. 참여는 자발적이며 중간에 그만두셔도 됩니다. 결과는 개인이 드러나지 않는 집계 형태로 제시합니다.'''
 ROLES=['은행 기업금융·여신심사','신용평가·신용분석','금융기관 리스크관리','증권사·자산운용사 기업·산업분석','기업 재무·자금·기획','회계·감사·컨설팅','기업가치평가·투자분석','금융·재무 연구·교육','관련 경험 없음','기타']
@@ -135,17 +135,18 @@ def main():
             if key=='log_assets': definition='원래 입력에 포함된 총자산의 부호 보존 로그 변환값. sign(총자산) × ln(1+|총자산|). 원액으로 역변환하거나 다른 단위로 바꾸지 않았습니다.'
             if key=='derived__long_debt_to_total_debt': definition='(유동성장기부채 + 비유동장기차입금) ÷ 총이자부부채.'
             dictionary.append(label(key,nm)+': '+definition)
-    spec={'title':'기업 재무행동 판단 연구','buildId':'H18-v1-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
+    spec={'title':'기업 재무행동 판단 연구','buildId':'H18-v2-20261001','assetBase':ASSET_BASE,'intro':INTRO,'rules':RULES,'actions':[a+' — '+b+' | '+c for a,b,c in ACTIONS],'dictionary':'\n'.join(dictionary),'backgroundRoles':ROLES,'experience':EXP,'additionalInformation':MORE,'cases':cases,'images':[{'file':f'case_{c["alias"]}.png','sha256':renders[f'case_{c["alias"]}.png']['sha256']} for c in cases]}
     raw=json.dumps(spec,ensure_ascii=False,allow_nan=False)
     for name in cross.firm_name:
         assert name not in raw, 'Company identity leaked to respondent specification'
     assert 'mapped_action' not in raw and 'selection_stratum' not in raw
     template=(h/'analysis/h15_form.gs').read_text(encoding='utf-8'); assert template.count('__DATA_JSON__')==1
+    template=template.replace('createHuman15Survey','createHuman18Survey').replace('Human-15 Google Forms builder','Human-18 Google Forms builder')
     script=template.replace('__DATA_JSON__',raw)
     (out/'CREATE_GOOGLE_FORM.gs').write_text(script,encoding='utf-8'); (out/'CREATE_GOOGLE_FORM.txt').write_text(script,encoding='utf-8')
     with tempfile.NamedTemporaryFile(mode='w',suffix='.js',encoding='utf-8') as tmp:
         tmp.write(script);tmp.flush();subprocess.run(['node','--check',tmp.name],check=True)
-    md=['# Google Form 수동 작성 원고 — H18-v1','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~R 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
+    md=['# Google Form 수동 작성 원고 — H18-v2','',INTRO,'','## 응답자 배경','업무: '+', '.join(ROLES),'경력: '+', '.join(EXP),'익숙함: 1~5','', '## 공통 안내',RULES,'','## 재무지표 정의',*dictionary,'',*docs,'## 마지막 확인','추가로 필요한 정보: '+', '.join(MORE),'기업을 알아본 사례: A~R 중 해당 사례 선택(없으면 빈칸)','외부 검색·데이터·생성형 AI 사용 여부: 아니오/예','선택지에 없는 행동 및 불명확했던 점: 자유응답']
     (public/'COPY_PASTE_FORM_TEXT.md').write_text('\n\n'.join(md),encoding='utf-8')
     preview=['<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>H15 설문 미리보기</title><style>body{font:17px/1.65 sans-serif;max-width:860px;margin:30px auto;padding:0 18px}img{max-width:100%;height:auto}section{margin:42px 0;padding:24px;border:1px solid #ddd;border-radius:12px}label{display:block;margin:8px 0}p{white-space:pre-wrap}textarea{width:96%;min-height:80px}</style><body><h1>기업 재무행동 판단 연구</h1><p>오프라인 검토용. 응답을 수집하거나 전송하지 않습니다.</p><p>'+html.escape(INTRO)+'</p><h2>공통 안내</h2><p>'+html.escape(RULES)+'</p>']
     for c in cases:
@@ -155,12 +156,12 @@ def main():
     preview+=['</body></html>'];(public/'PREVIEW.html').write_text('\n'.join(preview),encoding='utf-8')
     report={'status':'BUILD_AND_STATIC_VALIDATION_PASS','n_cases':18,'preserved_original_aliases':list('ABCDEFGHI'),'state_diversity_aliases':list('JKLMNO'),'broad_diagnostic_aliases':list('PQR'),'fields_per_case':27,'no_company_names_in_respondent_spec':True,'exact_catalog_matches_prompt':True,'script_node_syntax_check':'PASS','google_account_execution':'NOT_RUN','browser_visual_check':'NOT_RUN','image_render_checks':renders,'response_collection':'NOT_STARTED','original_strict_archive_modified':False}
     dump(out/'VALIDATION.json',report);dump(out/'respondent_spec.json',spec)
-    (out/'README_KO.md').write_text('''# 18개 사례 Google Form 패키지 — H18-v1
+    (out/'README_KO.md').write_text('''# 18개 사례 Google Form 패키지 — H18-v2
 
 ## 가장 빠른 사용 방법
 1. CREATE_GOOGLE_FORM.txt를 메모장으로 열어 전체 복사합니다.
 2. Google Apps Script 새 프로젝트의 기본 코드를 지우고 붙여넣습니다.
-3. createHuman15Survey 함수를 실행하고 권한을 승인합니다.
+3. createHuman18Survey 함수를 실행하고 권한을 승인합니다.
 4. 실행 로그의 Draft edit URL을 엽니다. 설문과 응답 시트가 생성됩니다.
 5. 연구 문의처·참여 안내와 기관의 연구 절차를 확인하고, 미리보기로 시험 응답을 한 뒤 게시합니다. 기본 생성 상태는 비공개 초안입니다.
 
