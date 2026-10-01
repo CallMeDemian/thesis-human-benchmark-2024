@@ -50,7 +50,7 @@ function createHuman15Survey() {
   const consent = form.addMultipleChoiceItem().setTitle('연구 설명을 읽었으며 자발적으로 참여에 동의합니다.').setRequired(true);
   consent.setChoices([
     consent.createChoice('동의합니다', FormApp.PageNavigationType.CONTINUE),
-    consent.createChoice('동의하지 않습니다', FormApp.PageNavigationType.SUBMIT)
+    consent.createChoice('참여하지 않겠습니다', FormApp.PageNavigationType.SUBMIT)
   ]);
   form.addPageBreakItem().setTitle('응답자 배경');
   form.addCheckboxItem().setTitle('현재 또는 과거에 경험한 업무를 선택해 주십시오.').setChoiceValues(SURVEY.backgroundRoles).setRequired(true);
@@ -69,11 +69,11 @@ function createHuman15Survey() {
     } else {
       c.groups.forEach(function(g) { form.addSectionHeaderItem().setTitle(g.title).setHelpText(g.lines.join('\n')); });
     }
-    form.addMultipleChoiceItem().setTitle('[' + c.alias + '] 향후 약 1년의 재무건전성 개선을 위해 우선적으로 권고할 행동 하나를 선택해 주십시오.')
-      .setHelpText('표시된 수치는 읽기 쉽게 반올림한 표준 프로그램입니다. 제시된 후보 중 하나를 그대로 선택해 주세요.')
+    form.addMultipleChoiceItem().setTitle('[' + c.alias + '] 향후 약 1년의 재무건전성 개선을 위해 가장 먼저 권고할 행동 하나를 골라 주세요.')
+      .setHelpText('표시된 수치는 읽기 쉽게 반올림한 표준 프로그램입니다. 가장 적절하다고 생각하는 후보 하나를 골라 주세요.')
       .setChoiceValues(SURVEY.actions).setRequired(true);
     form.addScaleItem().setTitle('[' + c.alias + '] 선택에 대한 확신 정도').setBounds(1,5).setLabels('매우 불확실','매우 확신').setRequired(true);
-    form.addParagraphTextItem().setTitle('[' + c.alias + '] 선택 이유').setHelpText('핵심 재무상태와 고려한 상충관계를 1~3문장으로 적어 주십시오. 이름·기관명 등 개인정보는 적지 마십시오.').setRequired(true);
+    form.addParagraphTextItem().setTitle('[' + c.alias + '] 선택 이유').setHelpText('판단에 가장 중요했던 재무상태와 이유를 1~3문장으로 적어 주세요.').setRequired(true);
   });
   form.addPageBreakItem().setTitle('마지막 확인');
   form.addCheckboxItem().setTitle('실무에서 추가로 확인하고 싶은 정보').setChoiceValues(SURVEY.additionalInformation);
