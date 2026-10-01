@@ -1,9 +1,9 @@
-# 18개 사례 Google Form 패키지 — H18-v1
+# 18개 사례 Google Form 패키지 — H18-v2
 
 ## 가장 빠른 사용 방법
 1. CREATE_GOOGLE_FORM.txt를 메모장으로 열어 전체 복사합니다.
 2. Google Apps Script 새 프로젝트의 기본 코드를 지우고 붙여넣습니다.
-3. createHuman15Survey 함수를 실행하고 권한을 승인합니다.
+3. createHuman18Survey 함수를 실행하고 권한을 승인합니다.
 4. 실행 로그의 Draft edit URL을 엽니다. 설문과 응답 시트가 생성됩니다.
 5. 연구 문의처·참여 안내와 기관의 연구 절차를 확인하고, 미리보기로 시험 응답을 한 뒤 게시합니다. 기본 생성 상태는 비공개 초안입니다.
 
