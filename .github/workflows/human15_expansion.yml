@@ -20,6 +20,10 @@ jobs:
         with:
           path: human
           fetch-depth: 1
+      - name: Sync human worktree to branch head
+        run: |
+          git -C human fetch origin analysis/human15-archival-expansion
+          git -C human reset --hard origin/analysis/human15-archival-expansion
       - uses: actions/checkout@v4
         with:
           repository: CallMeDemian/thesis-reproduction-kit-v43
