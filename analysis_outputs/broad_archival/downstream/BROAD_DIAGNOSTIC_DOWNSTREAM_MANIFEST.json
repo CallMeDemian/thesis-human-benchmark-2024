@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "analysis_id": "BROAD_DIAGNOSTIC_MODEL_SIDE_V1",
+  "strict_extension_n": 0,
+  "diagnostic_n": 3,
+  "comparison_contract": {
+    "mode": "candidate9",
+    "information_condition": "IC-b",
+    "budget": "B1",
+    "replicate": 1,
+    "analysis_population": "itt",
+    "policies": [
+      "C4",
+      "C4R",
+      "C6-E"
+    ]
+  },
+  "stage9": {
+    "BASELINE": {
+      "path": "frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/BASELINE_STRICT_ITT/llm_stage9_llm_rl_comparison.csv",
+      "sha256": "cc13a4bc0c98607b227c740c42bae029307741ad985e51673ae3d086b079c030",
+      "size": 22827155,
+      "models": [
+        "google_gemini31flashlite",
+        "openai_gpt54mini"
+      ]
+    },
+    "HIGH": {
+      "path": "frozen/original_release/evaluation/llm_final_evaluation_20260913/stage9/HIGH_STRICT_ITT/llm_stage9_llm_rl_comparison.csv",
+      "sha256": "6c1d94c2f81ae5a8f8ec193be2b57d43047a24e14152fa2e897e0381e27cd3b4",
+      "size": 26573800,
+      "models": [
+        "google_gemini31flashlite",
+        "openai_gpt54mini"
+      ]
+    }
+  },
+  "outputs": [
+    "broad_diagnostic_model_side_long.csv",
+    "broad_diagnostic_case_table.csv",
+    "broad_diagnostic_summary.csv",
+    "BROAD_DIAGNOSTIC_DOWNSTREAM_REPORT.md"
+  ]
+}
