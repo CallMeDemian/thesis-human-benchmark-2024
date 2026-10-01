@@ -1,0 +1,83 @@
+name: Human-18 survey build
+on:
+  push:
+    branches: [analysis/human15-archival-expansion]
+    paths:
+      - 'analysis/h18_*.py'
+      - 'analysis/h15_form.gs'
+      - 'analysis_outputs/broad_archival/supplementary_archival_diagnostics_v2.csv'
+      - '.github/workflows/human18_survey.yml'
+permissions:
+  contents: write
+concurrency:
+  group: human18-survey
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: human
+          fetch-depth: 1
+      - uses: actions/checkout@v4
+        with:
+          repository: CallMeDemian/thesis-reproduction-kit-v43
+          ref: thesis-v43-reproduction-kit-v1.0.4
+          path: repro
+          lfs: false
+          fetch-depth: 1
+      - name: Fetch frozen IC-b payload
+        run: |
+          git -C repro lfs install --local
+          git -C repro lfs pull --include='frozen/original_release/llm/final_plan3/2cf6d6d0e4250e66ce882ab95f9d641f2c73711ffbc6429e9a203dcc2ee680a2/firm_payload_source.parquet' --exclude=''
+      - name: Install dependencies
+        run: |
+          python -m pip install --disable-pip-version-check pandas==2.2.3 pyarrow==19.0.1 pillow==11.3.0
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq fonts-noto-cjk
+      - name: Build H18 package
+        run: |
+          set -euo pipefail
+          python -m py_compile human/analysis/h18_select.py human/analysis/h18_build.py
+          python human/analysis/h18_select.py --human human --repro repro
+          python human/analysis/h18_build.py --human human --repro repro
+      - name: Commit generated package and pin images
+        run: |
+          set -euo pipefail
+          git -C human config user.name 'github-actions[bot]'
+          git -C human config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git -C human add analysis_outputs/human18
+          if ! git -C human diff --cached --quiet; then
+            git -C human commit -m 'build: generate human-18 survey package'
+          fi
+          git -C human pull --rebase origin analysis/human15-archival-expansion
+          git -C human push origin HEAD:analysis/human15-archival-expansion
+          export ASSET_COMMIT=$(git -C human rev-parse HEAD)
+          python - <<'PY'
+          import os,json
+          from pathlib import Path
+          p=Path('human/analysis_outputs/human18')
+          old='refs/heads/analysis/human15-archival-expansion/'
+          new=os.environ['ASSET_COMMIT']+'/'
+          for fn in ['CREATE_GOOGLE_FORM.gs','CREATE_GOOGLE_FORM.txt','respondent_spec.json']:
+              f=p/fn
+              f.write_text(f.read_text(encoding='utf-8').replace(old,new),encoding='utf-8')
+          (p/'ASSET_COMMIT.json').write_text(json.dumps({'immutable_image_commit':os.environ['ASSET_COMMIT']},indent=2)+'\n')
+          PY
+          git -C human add analysis_outputs/human18
+          if ! git -C human diff --cached --quiet; then
+            git -C human commit -m 'release: pin human-18 survey images'
+            git -C human push origin HEAD:analysis/human15-archival-expansion
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: human18-survey-package
+          path: human/analysis_outputs/human18
+      - uses: actions/upload-artifact@v4
+        with:
+          name: human18-code-only
+          path: |
+            human/analysis_outputs/human18/CREATE_GOOGLE_FORM.txt
+            human/analysis_outputs/human18/README_KO.md
