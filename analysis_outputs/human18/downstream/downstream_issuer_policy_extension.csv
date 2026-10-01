@@ -1,0 +1,14 @@
+﻿firm_key,firm_name,source_type,regime,model,policy,issuer_mapped_action,issuer_mapped_delta_alpha,selected_action,selected_delta_alpha,candidate_ceiling_alpha_actions,candidate_ceiling_alpha_delta,note
+017250::2024,인터엠,IR,REFERENCE,issuer/C3-E,issuer-mapped vs C3-E,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,google_gemini31flashlite,C4,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,openai_gpt54mini,C4,OE,2.6166484595698165,OE,2.6166484595698165,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,google_gemini31flashlite,C6-E,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,google_gemini31flashlite,C4R,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,openai_gpt54mini,C6-E,OE,2.6166484595698165,MX1,1.6838097887609393,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,BASELINE,openai_gpt54mini,C4R,OE,2.6166484595698165,OE,2.6166484595698165,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,google_gemini31flashlite,C4,OE,2.6166484595698165,MX1,1.6838097887609393,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,openai_gpt54mini,C4,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,google_gemini31flashlite,C6-E,OE,2.6166484595698165,MX1,1.6838097887609393,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,google_gemini31flashlite,C4R,OE,2.6166484595698165,MX1,1.6838097887609393,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,openai_gpt54mini,C6-E,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
+017250::2024,인터엠,IR,HIGH,openai_gpt54mini,C4R,OE,2.6166484595698165,RF,2.970548858260905,RF,2.970548858260905,Issuer-policy layer only; not independent expert strict benchmark
